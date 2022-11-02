@@ -1,3 +1,7 @@
+# Temparary Content:
+- Will delete this part after finished the design
+- Here is the link of architectural diagram mapping: https://docs.google.com/drawings/d/1pBK20mgLdNgUVLhHKKALNiS4pxQ4sv7EuKy-Pyux50g/edit?usp=sharing
+  
 <h1>INFO 441 Project: Daily Tarot Card Reader and Journal</h1>
 
 <p>Our project will be a daily Tarot Card reader that allows users to see a card every day as well as add journel entries.</p>
