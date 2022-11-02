@@ -12,6 +12,19 @@
 
 <h2>Technical Description</h2>
 
+### Achitectural Diagram
+### Summary Table
+
+| Priority | User | Description | Techinical Implementation |
+|----------|------|-------------|---------------------------|
+|P0| As a user | I want to create and log in my account at the Tarot website| When user need to create an account, log in, and log out, use **Microsoft Azure** to implement the authentifation|
+|P0| As a user|I'd like to request a tarot card every day and receive information about the card. I also want to look at past cards I have drawn | When user request a tarot card, send a request to **Mongodb** which save a full sets of tarots and pick one randomly, and send the result back to client throw a handler. Meanwhile, save this result in Mongodb with a unique user id |
+P1| As a user | I want to log a journal with the card and review my past jounal entries | When user create a jounal input, send the input back to server and save it along with the drawn tarot card in **Mongodb**. When users request viewing past jounal, server make a reqeust to the database and send the target result back to client |
+P2 | As a user | I want to share my card with others | **need to be implemented** |
+P4| As a user | I want to collaborate with others to make our own set of tarot cards | After user finishing creating own set of tarot cards, save the cards in an object and save it in MongoDB |
+
+
+
 
 <h2>NOTE TAKING BELOW</h2>
 
@@ -32,9 +45,8 @@
 
 - Why do you as developers want to build this application?
   - it's a fun way to engage with people
-  - it's easy to start with a minimum viable project and add on other extensions as time goes on
+  - it's easy to start with a minimum viable project and a
   - it will create a tarot api for others to use
-
 
 
 P0 - a user can have an account
@@ -46,7 +58,7 @@ P1 - a user can look at their past journal entries
 
 P2 - a user can share their card with others
 
-P3 - a user can request a past-present-future tarot layout and log it with a diary entry
-P3 - a user can look at all of their past readings including the multi-card ones.
+P3 - a user can request a past-present-future tarot layout and log it with a diary entry ?
+P3 - a user can look at all of their past readings including the multi-card ones. ? 
 
 P4 - People can collaborate with others to make their own set of tarot cards
