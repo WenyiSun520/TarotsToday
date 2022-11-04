@@ -25,7 +25,6 @@
 |P0| As a user|I'd like to request a tarot card every day and receive information about the card. I also want to look at past cards I have drawn | When user request a tarot card, send a request to **Mongodb** which save a full sets of tarots and pick one randomly, and send the result back to client throw a handler. Meanwhile, save this result in Mongodb with a unique user id |
 P1| As a user | I want to log a journal with the card and review my past jounal entries | When user create a jounal input, send the input back to server and save it along with the drawn tarot card in **Mongodb**. When users request viewing past jounal, server make a reqeust to the database and send the target result back to client |
 P2 | As a user | I want to share my card with others | **need to be implemented** |
-P4| As a user | I want to collaborate with others to make our own set of tarot cards | After user finishing creating own set of tarot cards, save the cards in an object and save it in MongoDB |
 
 
 
