@@ -21,10 +21,10 @@
 | Priority | User | Description | Techinical Implementation |
 |----------|------|-------------|---------------------------|
 
-|P0| As a user | I'd like to request a tarot card every day and receive information about the card. | When user request a tarot card, send a request to **Mongodb** to pick a card at random, and send the result back to the client through a handler. Meanwhile, save this result in Mongodb with a unique user id and date.|
-|P1| As a user | I want to create and log in my account at the Tarot website| When user need to create an account, log in, and log out, use **Microsoft Azure** to implement the authentication|
+|P0| As a user | I'd like to request a tarot card every day and receive information about the card. | When user request a tarot card, send a request to **Mongodb** to pick a card at random, and send the result back to the client through a handler. Meanwhile, save this result in Mongodb with a unique user id and date.
+|P1| As a user | I want to create and log in my account at the Tarot website| When user need to create an account, log in, and log out, use **Microsoft Azure** to implement the authentication
 |P2| As a user | I  want to be able to draw different types of tarot readings (for example, ones with multiple cards) | When a user requests a tarot reading, send a request to **Mongodb** to pull a radnom assortment of cards depending on the type of readings, and send the result back to the client through a handler. Meanwhile, save this result in Mongodb with a unique user id, reading id, and date.
 |P3| As a user | I want to look at past readings I have drawn | When user requests past readings, send a request to **Mongodb** which sends back the full list of tarot readings, and send the result back to client through a handler. 
-|P4| As a user | I want to log a journal entried with the readings | When a user creates a jounal entry, send the input back to server and save it along with the tarot reading in **Mongodb**. |
+|P4| As a user | I want to log a journal entried with the readings | When a user creates a jounal entry, send the input back to server and save it along with the tarot reading in **Mongodb**. 
 |P5| As a user | I want to review my past jounal entries | When users request to view  past jounal, the server make a reqeust to the database and sends the target result back to client |
 
