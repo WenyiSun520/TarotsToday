@@ -1,551 +1,629 @@
 {
-    "description": "tarot cards and basic information about them, as well as references to corresponding scans",
-    "cards": [
-      {
-        "name": "The Fool",
-        "number": "0",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m00.jpg"
-      },
-      {
-        "name": "The Magician",
-        "number": "1",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m01.jpg"
-      },
-      {
-        "name": "The High Priestess",
-        "number": "2",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m02.jpg"
-      },
-      {
-        "name": "The Empress",
-        "number": "3",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m03.jpg"
-      },
-      {
-        "name": "The Emperor",
-        "number": "4",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m04.jpg"
-      },
-      {
-        "name": "The Hierophant",
-        "number": "5",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m05.jpg"
-      },
-      {
-        "name": "The Lovers",
-        "number": "6",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m06.jpg"
-      },
-      {
-        "name": "The Chariot",
-        "number": "7",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m07.jpg"
-      },
-      {
-        "name": "Strength",
-        "number": "8",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m08.jpg"
-      },
-      {
-        "name": "The Hermit",
-        "number": "9",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m09.jpg"
-      },
-      {
-        "name": "Wheel of Fortune",
-        "number": "10",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m10.jpg"
-      },
-      {
-        "name": "Justice",
-        "number": "11",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m11.jpg"
-      },
-      {
-        "name": "The Hanged Man",
-        "number": "12",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m12.jpg"
-      },
-      {
-        "name": "Death",
-        "number": "13",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m13.jpg"
-      },
-      {
-        "name": "Temperance",
-        "number": "14",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m14.jpg"
-      },
-      {
-        "name": "The Devil",
-        "number": "15",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m15.jpg"
-      },
-      {
-        "name": "The Tower",
-        "number": "16",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m16.jpg"
-      },
-      {
-        "name": "The Star",
-        "number": "17",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m17.jpg"
-      },
-      {
-        "name": "The Moon",
-        "number": "18",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m18.jpg"
-      },
-      {
-        "name": "The Sun",
-        "number": "19",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m19.jpg"
-      },
-      {
-        "name": "Judgement",
-        "number": "20",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m20.jpg"
-      },
-      {
-        "name": "The World",
-        "number": "21",
-        "arcana": "Major Arcana",
-        "suit": null,
-        "img": "m21.jpg"
-      },
-      {
-        "name": "Ace of Cups",
-        "number": "1",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c01.jpg"
-      },
-      {
-        "name": "Two of Cups",
-        "number": "2",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c02.jpg"
-      },
-      {
-        "name": "Three of Cups",
-        "number": "3",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c03.jpg"
-      },
-      {
-        "name": "Four of Cups",
-        "number": "4",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c04.jpg"
-      },
-      {
-        "name": "Five of Cups",
-        "number": "5",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c05.jpg"
-      },
-      {
-        "name": "Six of Cups",
-        "number": "6",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c06.jpg"
-      },
-      {
-        "name": "Seven of Cups",
-        "number": "7",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c07.jpg"
-      },
-      {
-        "name": "Eight of Cups",
-        "number": "8",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c08.jpg"
-      },
-      {
-        "name": "Nine of Cups",
-        "number": "9",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c09.jpg"
-      },
-      {
-        "name": "Ten of Cups",
-        "number": "10",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c10.jpg"
-      },
-      {
-        "name": "Page of Cups",
-        "number": "11",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c11.jpg"
-      },
-      {
-        "name": "Knight of Cups",
-        "number": "12",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c12.jpg"
-      },
-      {
-        "name": "Queen of Cups",
-        "number": "13",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c13.jpg"
-      },
-      {
-        "name": "King of Cups",
-        "number": "14",
-        "arcana": "Minor Arcana",
-        "suit": "Cups",
-        "img": "c14.jpg"
-      },
-      {
-        "name": "Ace of Swords",
-        "number": "1",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s01.jpg"
-      },
-      {
-        "name": "Two of Swords",
-        "number": "2",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s02.jpg"
-      },
-      {
-        "name": "Three of Swords",
-        "number": "3",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s03.jpg"
-      },
-      {
-        "name": "Four of Swords",
-        "number": "4",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s04.jpg"
-      },
-      {
-        "name": "Five of Swords",
-        "number": "5",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s05.jpg"
-      },
-      {
-        "name": "Six of Swords",
-        "number": "6",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s06.jpg"
-      },
-      {
-        "name": "Seven of Swords",
-        "number": "7",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s07.jpg"
-      },
-      {
-        "name": "Eight of Swords",
-        "number": "8",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s08.jpg"
-      },
-      {
-        "name": "Nine of Swords",
-        "number": "9",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s09.jpg"
-      },
-      {
-        "name": "Ten of Swords",
-        "number": "10",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s10.jpg"
-      },
-      {
-        "name": "Page of Swords",
-        "number": "11",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s11.jpg"
-      },
-      {
-        "name": "Knight of Swords",
-        "number": "12",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s12.jpg"
-      },
-      {
-        "name": "Queen of Swords",
-        "number": "13",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s13.jpg"
-      },
-      {
-        "name": "King of Swords",
-        "number": "14",
-        "arcana": "Minor Arcana",
-        "suit": "Swords",
-        "img": "s14.jpg"
-      },
-      {
-        "name": "Ace of Wands",
-        "number": "1",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w01.jpg"
-      },
-      {
-        "name": "Two of Wands",
-        "number": "2",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w02.jpg"
-      },
-      {
-        "name": "Three of Wands",
-        "number": "3",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w03.jpg"
-      },
-      {
-        "name": "Four of Wands",
-        "number": "4",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w04.jpg"
-      },
-      {
-        "name": "Five of Wands",
-        "number": "5",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w05.jpg"
-      },
-      {
-        "name": "Six of Wands",
-        "number": "6",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w06.jpg"
-      },
-      {
-        "name": "Seven of Wands",
-        "number": "7",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w07.jpg"
-      },
-      {
-        "name": "Eight of Wands",
-        "number": "8",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w08.jpg"
-      },
-      {
-        "name": "Nine of Wands",
-        "number": "9",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w09.jpg"
-      },
-      {
-        "name": "Ten of Wands",
-        "number": "10",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w10.jpg"
-      },
-      {
-        "name": "Page of Wands",
-        "number": "11",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w11.jpg"
-      },
-      {
-        "name": "Knight of Wands",
-        "number": "12",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w12.jpg"
-      },
-      {
-        "name": "Queen of Wands",
-        "number": "13",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w13.jpg"
-      },
-      {
-        "name": "King of Wands",
-        "number": "14",
-        "arcana": "Minor Arcana",
-        "suit": "Wands",
-        "img": "w14.jpg"
-      },
-      {
-        "name": "Ace of Pentacles",
-        "number": "1",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p01.jpg"
-      },
-      {
-        "name": "Two of Pentacles",
-        "number": "2",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p02.jpg"
-      },
-      {
-        "name": "Three of Pentacles",
-        "number": "3",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p03.jpg"
-      },
-      {
-        "name": "Four of Pentacles",
-        "number": "4",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p04.jpg"
-      },
-      {
-        "name": "Five of Pentacles",
-        "number": "5",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p05.jpg"
-      },
-      {
-        "name": "Six of Pentacles",
-        "number": "6",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p06.jpg"
-      },
-      {
-        "name": "Seven of Pentacles",
-        "number": "7",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p07.jpg"
-      },
-      {
-        "name": "Eight of Pentacles",
-        "number": "8",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p08.jpg"
-      },
-      {
-        "name": "Nine of Pentacles",
-        "number": "9",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p09.jpg"
-      },
-      {
-        "name": "Ten of Pentacles",
-        "number": "10",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p10.jpg"
-      },
-      {
-        "name": "Page of Pentacles",
-        "number": "11",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p11.jpg"
-      },
-      {
-        "name": "Knight of Pentacles",
-        "number": "12",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p12.jpg"
-      },
-      {
-        "name": "Queen of Pentacles",
-        "number": "13",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p13.jpg"
-      },
-      {
-        "name": "King of Pentacles",
-        "number": "14",
-        "arcana": "Minor Arcana",
-        "suit": "Pentacles",
-        "img": "p14.jpg"
-      }
-    ]
-  }
+  "description": "tarot cards and basic information about them, as well as references to corresponding scans",
+  "cards": [
+    {
+      "name": "The Fool",
+      "number": "0",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m00.jpg",
+      "description": "New beginnings, optimism, trust in life; Reversed: Delays"
+    },
+    {
+      "name": "The Magician",
+      "number": "1",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m01.jpg",
+      "description": "Action, the power to manifest; Reversed: Misunderstandings."
+    },
+    {
+      "name": "The High Priestess",
+      "number": "2",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m02.jpg",
+      "description": "Inaction, going within, the subconscious; Reversed: Manipulations."
+    },
+    {
+      "name": "The Empress",
+      "number": "3",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m03.jpg",
+      "description": "Abundance, nurturing, fertility, life in bloom; Reversed: Neglect"
+    },
+    {
+      "name": "The Emperor",
+      "number": "4",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m04.jpg",
+      "description": "Structure, stability, rules and power; Reversed: Chaos"
+    },
+    {
+      "name": "The Hierophant",
+      "number": "5",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m05.jpg",
+      "description": "Institutions, tradition, society and its rules; Reversed: Hypocrisy"
+    },
+    {
+      "name": "The Lovers",
+      "number": "6",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m06.jpg",
+      "description": "Sexuality, passion, choice, uniting; Reversed: Separation"
+    },
+    {
+      "name": "The Chariot",
+      "number": "7",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m07.jpg",
+      "description": "Movement, progress, integration; Reversed: Defeat"
+    },
+    {
+      "name": "Strength",
+      "number": "8",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m08.jpg",
+      "description": "Courage, subtle power, integration of animal self; Reversed: Fear"
+    },
+    {
+      "name": "The Hermit",
+      "number": "9",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m09.jpg",
+      "description": "Meditation, solitude, consciousness; Reversed: Isolation"
+    },
+    {
+      "name": "Wheel of Fortune",
+      "number": "10",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m10.jpg",
+      "description": "Cycles, change, ups and downs; Reversed: Stagnation"
+    },
+    {
+      "name": "Justice",
+      "number": "11",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m11.jpg",
+      "description": "Fairness, equality, balance; Reversed: Lies"
+    },
+    {
+      "name": "The Hanged Man",
+      "number": "12",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m12.jpg",
+      "description": "Surrender, new perspective, enlightenment; Reversed: Stubbornness."
+    },
+    {
+      "name": "Death",
+      "number": "13",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m13.jpg",
+      "description": "The end of something, change, the impermeability of all things; Reversed: Limbo"
+    },
+    {
+      "name": "Temperance",
+      "number": "14",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m14.jpg",
+      "description": "Balance, moderation, being sensible; Reversed: Impatience"
+    },
+    {
+      "name": "The Devil",
+      "number": "15",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m15.jpg",
+      "description": "Destructive patterns, addiction, giving away your power; Reversed: Freedom"
+    },
+    {
+      "name": "The Tower",
+      "number": "16",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m16.jpg",
+      "description": "Collapse of stable structures, release, sudden insight; Reversed: Control"
+    },
+    {
+      "name": "The Star",
+      "number": "17",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m17.jpg",
+      "description": "Hope, calm, a good omen; Reversed: Darkness"
+    },
+    {
+      "name": "The Moon",
+      "number": "18",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m18.jpg",
+      "description": "Mystery, the subconscious, dreams; Reversed: Paranoia"
+    },
+    {
+      "name": "The Sun",
+      "number": "19",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m19.jpg",
+      "description": "Success, happiness, all will be well; Reversed: Failure"
+    },
+    {
+      "name": "Judgement",
+      "number": "20",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m20.jpg",
+      "description": "Rebirth, a new phase, inner calling; Reversed: Regrets"
+    },
+    {
+      "name": "The World",
+      "number": "21",
+      "arcana": "Major Arcana",
+      "suit": null,
+      "img": "m21.jpg",
+      "description": "Completion, wholeness, attainment, celebration of life; Reversed: Incomplete"
+    },
+    {
+      "name": "Ace of Cups",
+      "number": "1",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c01.jpg",
+      "description": "Emotional fulfillment, joy; Reversed: Indifferent"
+    },
+    {
+      "name": "Two of Cups",
+      "number": "2",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c02.jpg",
+      "description": "Partnership, mutual attraction, compatibility; Reversed: Abandonment"
+    },
+    {
+      "name": "Three of Cups",
+      "number": "3",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c03.jpg",
+      "description": "Celebration, fun with friends, laughter; Reversed: Jealousy"
+    },
+    {
+      "name": "Four of Cups",
+      "number": "4",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c04.jpg",
+      "description": "Boredom, dissatisfaction with what is being offered; Reversed: Avoidance"
+    },
+    {
+      "name": "Five of Cups",
+      "number": "5",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c05.jpg",
+      "description": "Dwelling on the negative, self-pity; Reversed: Alienation"
+    },
+    {
+      "name": "Six of Cups",
+      "number": "6",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c06.jpg",
+      "description": "Sentimentality, kindness, help; Reversed: Discouraging"
+    },
+    {
+      "name": "Seven of Cups",
+      "number": "7",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c07.jpg",
+      "description": "So many choices, indecision, getting lost in fantasy, wishing and dreaming; Reversed: Lethargic"
+    },
+    {
+      "name": "Eight of Cups",
+      "number": "8",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c08.jpg",
+      "description": "Abandoning something in search of something better, vision; Reversed: Sacrifice"
+    },
+    {
+      "name": "Nine of Cups",
+      "number": "9",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c09.jpg",
+      "description": "Indulgence, self-satisfaction; Reversed: Disintegration"
+    },
+    {
+      "name": "Ten of Cups",
+      "number": "10",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c10.jpg",
+      "description": "Emotional bliss, happiness, attainment; Reversed: Disruption"
+    },
+    {
+      "name": "Page of Cups",
+      "number": "11",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c11.jpg",
+      "description": "Creative, inspired, learning artistic skill; Reversed: Gloomy"
+    },
+    {
+      "name": "Knight of Cups",
+      "number": "12",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c12.jpg",
+      "description": "Romantic, adventurous, following one\u2019s heart; Reversed: Pessimism"
+    },
+    {
+      "name": "Queen of Cups",
+      "number": "13",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c13.jpg",
+      "description": "Emotionally nurturing, intuitive, sensitive; Reversed: Ignorance"
+    },
+    {
+      "name": "King of Cups",
+      "number": "14",
+      "arcana": "Minor Arcana",
+      "suit": "Cups",
+      "img": "c14.jpg",
+      "description": "Repression of deep feelings, possible alcoholism; Reversed: Selfishness"
+    },
+    {
+      "name": "Ace of Swords",
+      "number": "1",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s01.jpg",
+      "description": "A fresh start, a sudden opportunity or idea, clarity; Reversed: Improbable"
+    },
+    {
+      "name": "Two of Swords",
+      "number": "2",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s02.jpg",
+      "description": "Indecision; Reversed: Conflicts"
+    },
+    {
+      "name": "Three of Swords",
+      "number": "3",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s03.jpg",
+      "description": "Heartbreak, betrayal; Reversed: Torment"
+    },
+    {
+      "name": "Four of Swords",
+      "number": "4",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s04.jpg",
+      "description": "Meditation, rest, retreat; Reversed: Disturbance"
+    },
+    {
+      "name": "Five of Swords",
+      "number": "5",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s05.jpg",
+      "description": "Mind games, hostility; Reversed: Treachery"
+    },
+    {
+      "name": "Six of Swords",
+      "number": "6",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s06.jpg",
+      "description": "Leaving, accepting help, going somewhere better; Reversed: Trouble"
+    },
+    {
+      "name": "Seven of Swords",
+      "number": "7",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s07.jpg",
+      "description": "Secret plans, abandoning ship; Reversed: Clumsiness"
+    },
+    {
+      "name": "Eight of Swords",
+      "number": "8",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s08.jpg",
+      "description": "feeling powerless and stuck; Reversed: Escaping"
+    },
+    {
+      "name": "Nine of Swords",
+      "number": "9",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s09.jpg",
+      "description": "Overactive mind, anxiety; Reversed: Martyrdom"
+    },
+    {
+      "name": "Ten of Swords",
+      "number": "10",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s10.jpg",
+      "description": "Feeling defeated, self-sabotage; Reversed: Sabotage"
+    },
+    {
+      "name": "Page of Swords",
+      "number": "11",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s11.jpg",
+      "description": "mentally unstable or intellectually immature, acts without thinking; Reversed: Stupidity"
+    },
+    {
+      "name": "Knight of Swords",
+      "number": "12",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s12.jpg",
+      "description": "Fierce, determined, aggressively pursues goals; Reversed: Boredom"
+    },
+    {
+      "name": "Queen of Swords",
+      "number": "13",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s13.jpg",
+      "description": "Intelligent, writer, communicative yet cold; Reversed: Ineffective"
+    },
+    {
+      "name": "King of Swords",
+      "number": "14",
+      "arcana": "Minor Arcana",
+      "suit": "Swords",
+      "img": "s14.jpg",
+      "description": "Serious, controlling, rational and mind/intellect-focused; Reversed: Foolish"
+    },
+    {
+      "name": "Ace of Wands",
+      "number": "1",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w01.jpg",
+      "description": "New beginnings, creative spark, fertile ideas; Reversed: Unpromising"
+    },
+    {
+      "name": "Two of Wands",
+      "number": "2",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w02.jpg",
+      "description": "Contemplation, assessing one\u2019s life direction; Reversed: Dispute"
+    },
+    {
+      "name": "Three of Wands",
+      "number": "3",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w03.jpg",
+      "description": "Reaping the rewards of your efforts; Reversed: Idleness"
+    },
+    {
+      "name": "Four of Wands",
+      "number": "4",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w04.jpg",
+      "description": "Celebration, safety, the home; Reversed: Discord"
+    },
+    {
+      "name": "Five of Wands",
+      "number": "5",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w05.jpg",
+      "description": "Competition, minor struggles or disagreements; Reversed: Timidness"
+    },
+    {
+      "name": "Six of Wands",
+      "number": "6",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w06.jpg",
+      "description": "Success, accolades and achievement; Reversed: Disapproval"
+    },
+    {
+      "name": "Seven of Wands",
+      "number": "7",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w07.jpg",
+      "description": "Feeling defensive and on guard; Reversed: Yielding"
+    },
+    {
+      "name": "Eight of Wands",
+      "number": "8",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w08.jpg",
+      "description": "Speed, things manifesting quickly; Reversed: Stagnation"
+    },
+    {
+      "name": "Nine of Wands",
+      "number": "9",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w09.jpg",
+      "description": "Pessimism, gearing up for the worst; Reversed: Weakness"
+    },
+    {
+      "name": "Ten of Wands",
+      "number": "10",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w10.jpg",
+      "description": "Feeling oppressed, exhaustion, too many responsibilities; Reversed: Impractical"
+    },
+    {
+      "name": "Page of Wands",
+      "number": "11",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w11.jpg",
+      "description": "newly inspired, excited about life and work; Reversed: Passive"
+    },
+    {
+      "name": "Knight of Wands",
+      "number": "12",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w12.jpg",
+      "description": "An adventurous risk taker who follows his passions; Reversed: Apathy"
+    },
+    {
+      "name": "Queen of Wands",
+      "number": "13",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w13.jpg",
+      "description": "Confidant, focused, has zest for life; Reversed: Fatigue"
+    },
+    {
+      "name": "King of Wands",
+      "number": "14",
+      "arcana": "Minor Arcana",
+      "suit": "Wands",
+      "img": "w14.jpg",
+      "description": "Career focused, mature, passionate; Reversed: Impostor"
+    },
+    {
+      "name": "Ace of Pentacles",
+      "number": "1",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p01.jpg",
+      "description": "Financial reward, clarity of life purpose, goals; Reversed: Debt"
+    },
+    {
+      "name": "Two of Pentacles",
+      "number": "2",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p02.jpg",
+      "description": "Balance, multitasking; Reversed: Impractical"
+    },
+    {
+      "name": "Three of Pentacles",
+      "number": "3",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p03.jpg",
+      "description": "Meaningful work, enjoying one\u2019s work, suitable career; Reversed: Mediocrity"
+    },
+    {
+      "name": "Four of Pentacles",
+      "number": "4",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p04.jpg",
+      "description": "Hoarding, feeling poor, holding self-back out of fear; Reversed: Greed"
+    },
+    {
+      "name": "Five of Pentacles",
+      "number": "5",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p05.jpg",
+      "description": "Minor money troubles, health problems, feeling like an outsider; Reversed: Helplessness"
+    },
+    {
+      "name": "Six of Pentacles",
+      "number": "6",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p06.jpg",
+      "description": "Charity, accepting and giving help; Reversed: Cruelty"
+    },
+    {
+      "name": "Seven of Pentacles",
+      "number": "7",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p07.jpg",
+      "description": "Patience, waiting for your plans to bear fruit; Reversed: Unemployment"
+    },
+    {
+      "name": "Eight of Pentacles",
+      "number": "8",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p08.jpg",
+      "description": "Hard work, focused efforts, laying the groundwork; Reversed: Skill-shortage"
+    },
+    {
+      "name": "Nine of Pentacles",
+      "number": "9",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p09.jpg",
+      "description": "Luxury, rest, financial and material comforts; Reversed: Dependency"
+    },
+    {
+      "name": "Ten of Pentacles",
+      "number": "10",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p10.jpg",
+      "description": "Financial success, strong business relationships; Reversed: Restrictions"
+    },
+    {
+      "name": "Page of Pentacles",
+      "number": "11",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p11.jpg",
+      "description": "Student, commitment to learning; Reversed: Rookie"
+    },
+    {
+      "name": "Knight of Pentacles",
+      "number": "12",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p12.jpg",
+      "description": "Cautious, sensible and slow to progress; Reversed: Inexperienced"
+    },
+    {
+      "name": "Queen of Pentacles",
+      "number": "13",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p13.jpg",
+      "description": "Healthy in body and finances, grounded and calm; Reversed: Unreasonable"
+    },
+    {
+      "name": "King of Pentacles",
+      "number": "14",
+      "arcana": "Minor Arcana",
+      "suit": "Pentacles",
+      "img": "p14.jpg",
+      "description": "Enjoys the good life (food, drink and leisure), financially secure; Reversed: Hoarder"
+    }
+  ]
+}
