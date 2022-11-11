@@ -1,6 +1,4 @@
-{
-  "description": "tarot cards and basic information about them, as well as references to corresponding scans",
-  "cards": [
+[
     {
       "name": "The Fool",
       "id" : 0,
@@ -703,5 +701,4 @@
       "img": "p14.jpg",
       "description": "Enjoys the good life (food, drink and leisure), financially secure; Reversed: Hoarder"
     }
-  ]
-}
+]
