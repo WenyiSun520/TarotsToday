@@ -6,7 +6,7 @@ async function loadOneCard() {
     let cardData = await response.json()
 
     let htmlReturn = `
-    <h1>${cardData.name}</h1>
+    <h2>${cardData.name}</h2>
     <img src="../imgs/cards/${cardData.img}" alt="${cardData.name}" />
     <p>Description: ${cardData.description}</p>
     `
