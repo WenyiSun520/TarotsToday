@@ -14,7 +14,7 @@
 <h2>Technical Description</h2>
 
 ### Architectural Diagram
-![Diagram describing View, Model, Controller for Tarot Project](./imgs/info441-project-proposal-diagram.jpg)
+![Diagram describing View, Model, Controller for Tarot Project](./public/imgs/info441-project-proposal-diagram.jpg)
 
 ### Summary Table
 
