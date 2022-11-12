@@ -25,17 +25,32 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    let newCard = new req.models.Users({
-      username: req.session.account.username,
-      drawnCard: [
-        {
-          card_id: req.card_id,
-          date: req.date,
-        },
-      ],
-    });
-    await newCard.save();
-    res.send({ status: "success" });
+    if (req.session.isAuthenticated) {
+    console.log("debug:" + req.body.created_date);
+      let name = req.session.account.username;
+      let userInfo = await req.models.Users.findOne({ username: name });
+      if (userInfo == null) {
+        // if this is the first-time user, create a schema for the user and save date
+        let newCard = new req.models.Users({
+          username: req.session.account.username,
+          drawnCard: {
+            card_id: req.body.card_id,
+            created_date: req.body.created_date
+          },
+        });
+        await newCard.save();
+      } else {
+        userInfo.drawnCard.push({
+          card_id: req.body.card_id,
+          created_date: req.body.created_date
+        });
+        userInfo.save();
+      }
+      res.send({ status: "success" });
+    } else {
+      console.log("Error saving post: You haven't Login");
+      res.send({ status: "Fail", error: "You haven't login" });
+    }
   } catch (error) {
     console.log("Error saving post: ", error);
     res.status(500).json({ status: "error", error: error });

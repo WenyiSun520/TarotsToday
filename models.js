@@ -23,12 +23,14 @@ async function main(){
     models.TarotCard = mongoose.model('TarotCard', tarotCardSchema)
 
     const userSchema = new mongoose.Schema({
-        username: String,
-        drawnCard : [{
-            card_id : Number,
-            date: Date
-        }]
-    })
+      username: String,
+      drawnCard: [
+        {
+          card_id: Number,
+          created_date: Date,
+        },
+      ],
+    });
     models.Users = mongoose.model("Users", userSchema);
 
     console.log('mongoose models created')
