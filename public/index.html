@@ -4,14 +4,21 @@
   <title>Tarot Today</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script src="javascripts/index.js"></script>
+  <script src="javascripts/loadIdentity.js"></script>
 </head>
 
 <body>
+  <a href="/signin"> Log In</a>
+  <a href="/signout"> Log Out</a>
+
   <h1>Tarot Today</h1>
+  <div id="name-greeting"></div>
   <p>Welcome to Tarot Today! Where you can draw a random Tarot!</p>
 
-  <div id="results"></div>
   <button onclick="loadOneCard()">Press for Tarot Card</button>
+  <div id="results"></div>
+
+
 
 
 </body>
