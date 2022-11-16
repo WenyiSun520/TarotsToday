@@ -44,7 +44,8 @@ async function main(){
       readings: [{
         typeOfReading: String,
         cards: [String], // array of card ids
-        journalEntry: String // journal entry associated with the reading
+        journalEntry: String, // journal entry associated with the reading
+        date: Date
       }]
   })
   models.Users = mongoose.model("Users", userSchema);

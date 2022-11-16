@@ -6,16 +6,17 @@ router.post("/", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
     //console.log("debug:" + req.body.created_date);
-      let name = req.session.account.username;
-      let userInfo = await req.models.Users.findOne({ username: name });
+      let currentUsername = req.session.account.username;
+      let userInfo = await req.models.Users.findOne({ username: currentUsername });
       if (userInfo == null) {
         // if this is the first-time user, create a schema for the user and save date
         let newUser = new req.models.Users({
-          username: req.session.account.username,
+          username: currentUsername,
           readings: [{
             typeOfReading: "SingleCard",
             cards: [req.body.card_id], 
-            journalEntry: ""
+            journalEntry: "",
+            date: Date()
           }],
         });
         await newUser.save();
@@ -23,9 +24,10 @@ router.post("/", async (req, res) => {
         userInfo.readings.push({
           typeOfReading: "SingleCard",
           cards: [req.body.card_id], 
-          journalEntry: ""
+          journalEntry: "",
+          date: Date()
         });
-        userInfo.save();
+        await userInfo.save();
       }
       res.send({ status: "success" });
     } else {
