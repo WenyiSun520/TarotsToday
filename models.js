@@ -33,20 +33,21 @@ async function main(){
   })
   models.TarotCard = mongoose.model('TarotCard', tarotCardSchema)
 
-  const readingSchema = new mongoose.Schema({
-    username: String, // username of the user who pulled the reading
-    reading_type: String,
-    tarot_cards: [{type: mongoose.Schema.Types.ObjectId, ref: "TarotCard"}], // array of ids of the tarot cards pulled
-    journal_entry: Number, // id of the journal entry associated with the reading
-    date: Date // date drawn
-  })
-  models.Reading = mongoose.model("Reading", readingSchema);
+  // const journalEntrySchema = new mongoose.Schema({
+  //   username: String, // username of the user who pulled the reading
+  //   tarot_reading: {type: mongoose.Schema.Types.ObjectId, ref: "Reading"}
+  // })
+  // models.JournalEntry = mongoose.model("JournalEntry", journalEntrySchema);
 
-  const journalEntrySchema = new mongoose.Schema({
-    username: String, // username of the user who pulled the reading
-    tarot_reading: {type: mongoose.Schema.Types.ObjectId, ref: "Reading"}
+  const userSchema = new mongoose.Schema({
+      username: String,
+      readings: [{
+        typeOfReading: String,
+        cards: [String], // array of card ids
+        journalEntry: String // journal entry associated with the reading
+      }]
   })
-  models.JournalEntry = mongoose.model("JournalEntry", journalEntrySchema);
+  models.Users = mongoose.model("Users", userSchema);
 
   console.log('mongoose models created')
 }
