@@ -10,18 +10,20 @@ router.post("/", async (req, res) => {
       let userInfo = await req.models.Users.findOne({ username: name });
       if (userInfo == null) {
         // if this is the first-time user, create a schema for the user and save date
-        let newCard = new req.models.Users({
+        let newUser = new req.models.Users({
           username: req.session.account.username,
-          drawnCard: {
-            card_id: req.body.card_id,
-            created_date: req.body.created_date
-          },
+          readings: [{
+            typeOfReading: "SingleCard",
+            cards: [req.body.card_id], 
+            journalEntry: ""
+          }],
         });
-        await newCard.save();
+        await newUser.save();
       } else {
-        userInfo.drawnCard.push({
-          card_id: req.body.card_id,
-          created_date: req.body.created_date
+        userInfo.readings.push({
+          typeOfReading: "SingleCard",
+          cards: [req.body.card_id], 
+          journalEntry: ""
         });
         userInfo.save();
       }
