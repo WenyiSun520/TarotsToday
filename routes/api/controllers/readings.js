@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
       } else {
         userInfo.readings.push({
           typeOfReading: "SingleCard",
-          cards: [req.body.card_id], 
+          cards: userInfo.readings.cards.push(req.body.card_id), 
           journalEntry: "",
           date: Date()
         });
