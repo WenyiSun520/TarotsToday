@@ -43,55 +43,40 @@ router.get("/", async (req, res) => {
 
   // repsond with the array of the json of the cards
   try {
-    res.send(cards)
+    if (req.session.isAuthenticated) {
+    //console.log("debug:" + req.body.created_date);
+      let currentUsername = req.session.account.username;
+      let userInfo = await req.models.Users.findOne({ username: currentUsername });
+      if (userInfo == null) {
+        // if this is the first-time user, create a schema for the user and save date
+        let newUser = new req.models.Users({
+          username: currentUsername,
+          readings: [{
+            typeOfReading: "SingleCard",
+            cards: [req.body.card_id], 
+            journalEntry: "",
+            date: Date()
+          }],
+        });
+        await newUser.save();
+      } else {
+        userInfo.readings.push({
+          typeOfReading: "SingleCard",
+          cards: userInfo.readings.cards.push(req.body.card_id), 
+          journalEntry: "",
+          date: Date()
+        });
+        await userInfo.save();
+      }
+      res.send({ status: "success" });
+    } else {
+      console.log("Error saving post: You haven't Login");
+      res.send({ status: "Fail", error: "You haven't login" });
+    }
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
   }
 
 });
-
-
-
-
-
-export default router;
-
-
-
-// ---- OUTDATED BUT STILL USEFUL ----
-
-// router.post("/", async (req, res) => {
-//   try {
-//     if (req.session.isAuthenticated) {
-//     //console.log("debug:" + req.body.created_date);
-//       let name = req.session.account.username;
-//       let userInfo = await req.models.Users.findOne({ username: name });
-//       if (userInfo == null) {
-//         // if this is the first-time user, create a schema for the user and save date
-//         let newCard = new req.models.Users({
-//           username: req.session.account.username,
-//           drawnCard: {
-//             card_id: req.body.card_id,
-//             created_date: req.body.created_date
-//           },
-//         });
-//         await newCard.save();
-//       } else {
-//         userInfo.drawnCard.push({
-//           card_id: req.body.card_id,
-//           created_date: req.body.created_date
-//         });
-//         userInfo.save();
-//       }
-//       res.send({ status: "success" });
-//     } else {
-//       console.log("Error saving post: You haven't Login");
-//       res.send({ status: "Fail", error: "You haven't login" });
-//     }
-//   } catch (error) {
-//     console.log("Error saving post: ", error);
-//     res.status(500).json({ status: "error", error: error });
-//   }
-// });
 
