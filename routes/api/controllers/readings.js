@@ -1,8 +1,10 @@
 import express from "express";
 var router = express.Router();
 
+// accepts a query parameter "numOfCards"
 router.get("/", async (req, res) => {
-  // P1 respond with the json of a random card
+
+  // log a reading with the right amount of cards
   try {
     //for the push
     let randNum = Math.floor(Math.random() * 77);
@@ -17,11 +19,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 
-  // P(later) TO DO: respond with a json of different cards
-  //          based on the query parameter "typeOfReading"
-});
-
-router.post("/", async (req, res) => {
+  // repsond with the array of the json of the cards
   try {
     if (req.session.isAuthenticated) {
     console.log("debug: made it into post");
@@ -54,9 +52,10 @@ router.post("/", async (req, res) => {
       res.send({ status: "Fail", error: "You haven't login" });
     }
   } catch (error) {
-    console.log("Error saving post: ", error);
+    console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
   }
+
 });
 
 
