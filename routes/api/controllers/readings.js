@@ -4,6 +4,7 @@ var router = express.Router();
 router.get("/", async (req, res) => {
   // P1 respond with the json of a random card
   try {
+    //for the push
     let randNum = Math.floor(Math.random() * 77);
 
     // pull all cards
