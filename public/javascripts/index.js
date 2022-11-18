@@ -1,3 +1,7 @@
+async function init() {
+  await loadIdentity()
+}
+
 async function loadOneCard() {
     // pull one random card
     // pull all cards
@@ -7,10 +11,15 @@ async function loadOneCard() {
     <h2>${cardData.name}</h2>
     <img src="../imgs/cards/${cardData.img}" alt="${cardData.name}" />
     <p>Description: ${cardData.description}</p>
+    <p class="d-none" id="cardId">${cardData.id}</p>
     `
-    postOneCard(cardData.id);
 
     document.getElementById("results").innerHTML = htmlReturn
+}
+
+async function saveNewEntry() {
+  let cardId = document.getElementById("cardId").innerText
+  postOneCard(cardId)
 }
 
 async function postOneCard(card_id){
