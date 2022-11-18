@@ -7,35 +7,11 @@ router.get("/", async (req, res) => {
   // log a reading with the right amount of cards
   try {
 
-    let cardIDs = []
-    let cards = []
-    
-    // add the new cards to the cards array based on how many cards we need
-    for (let i = 0; i < parseInt(req.query.numOfCards); i++) {
-      // find a random card
-      let randNum = Math.floor(Math.random() * 77);
-      let oneCard = await req.models.TarotCard.findOne({ id: randNum });
+    // pull all cards
+    let oneCard = await req.models.TarotCard.findOne({ id: randNum });
 
-      // check that it isn't in there already
-      if (!cards.includes(oneCard)) {
-        // add card id to what we'll send to the database
-        cardIDs.push(oneCard._id)
-        // add card json to what we'll send in the response
-        cards.push(oneCard)
-      } else { // run it again
-        i--
-      }
-    }
-
-    // make a new reading in the database
-    let newReading = new req.models.Reading({
-      username: req.session.account.username,
-      reading_type: "SingleCardReading",
-      tarot_cards: cardIDs, // ids of the tarot cards pulled
-      // journal_entry: Number, // id of the journal entry associated with the reading
-      date: Date // date drawn
-    });
-
+    // return the json of the matching id
+    res.json(oneCard);
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
@@ -44,7 +20,7 @@ router.get("/", async (req, res) => {
   // repsond with the array of the json of the cards
   try {
     if (req.session.isAuthenticated) {
-    //console.log("debug:" + req.body.created_date);
+    console.log("debug: made it into post");
       let currentUsername = req.session.account.username;
       let userInfo = await req.models.Users.findOne({ username: currentUsername });
       if (userInfo == null) {
@@ -80,3 +56,5 @@ router.get("/", async (req, res) => {
 
 });
 
+
+export default router;
