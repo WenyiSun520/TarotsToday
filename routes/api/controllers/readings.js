@@ -7,13 +7,10 @@ router.get("/", async (req, res) => {
     let randNum = Math.floor(Math.random() * 77);
 
     // pull all cards
-    let oneCard = await req.models.TarotCard.find({ id: randNum });
+    let oneCard = await req.models.TarotCard.findOne({ id: randNum });
 
     // return the json of the matching id
-    console.log(JSON.stringify(oneCard));
-    console.log();
-    console.log(oneCard[0].name);
-    res.json(oneCard[0]);
+    res.json(oneCard);
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
@@ -26,7 +23,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
-    //console.log("debug:" + req.body.created_date);
+    console.log("debug: made it into post");
       let currentUsername = req.session.account.username;
       let userInfo = await req.models.Users.findOne({ username: currentUsername });
       if (userInfo == null) {
@@ -61,3 +58,5 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+export default router;

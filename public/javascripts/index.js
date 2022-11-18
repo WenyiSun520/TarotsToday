@@ -14,7 +14,7 @@ async function loadOneCard() {
 }
 
 async function postOneCard(card_id){
-    let responseJson = await fetchJSON(`api/users/readings`,{
+    let responseJson = await fetchJSON(`api/readings`,{
         method: "POST",
         body: {
             card_id : card_id,
