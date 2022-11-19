@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
       console.log("debug: made it into post");
+       console.log("debug: jonral tetsing:"+req.body.journal);
       // Get username and info
       let currentUsername = req.session.account.username;
       let userInfo = await req.models.Users.findOne({ username: currentUsername });
@@ -35,7 +36,7 @@ router.post("/", async (req, res) => {
           readings: [{
             typeOfReading: "SingleCard",
             cards: [req.body.card_id],
-            journalEntry: "",
+            journalEntry: req.body.journal,
             date: Date()
           }],
         });
@@ -45,8 +46,8 @@ router.post("/", async (req, res) => {
         userInfo.readings.push({
           typeOfReading: "SingleCard",
           cards: [req.body.card_id],
-          journalEntry: "",
-          date: Date()
+          journalEntry: req.body.journal,
+          date: Date(),
         });
         await userInfo.save();
       }
