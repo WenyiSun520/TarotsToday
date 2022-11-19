@@ -1,5 +1,6 @@
 async function init() {
   await loadIdentity();
+  await loadEntry();
 }
 
 async function loadOneCard() {
@@ -24,6 +25,7 @@ async function saveNewEntry() {
   console.log("TarotId: " + cardId);
 
   postOneCard(cardId, journal);
+  init();
 }
 
 async function postOneCard(card_id, journal) {
@@ -41,5 +43,24 @@ async function postOneCard(card_id, journal) {
   } else {
     inputFeedback.textContent = "Fail!";
   }
-  document.getElementById("journal-input").appendChild(inputFeedback);
+  document.getElementById("journal-input").insertBefore(inputFeedback, showEntry);
+}
+
+async function loadEntry() {
+  
+  let responseJson = await fetchJSON(`api/readings/entry`);
+  if (responseJson.status == "success") {
+    let readings = responseJson.readings;
+    for (let i = 0; i < readings.length; i++) {
+      let oneRead = readings[i];
+      let cardInfo = await fetch("api/readings/cardId?id=" + oneRead.cards[0]);
+      cardInfo = await cardInfo.json()
+      let result = `Date:${oneRead.date} 
+      <br>Type Of Reading: ${oneRead.typeOfReading}
+      <br>${cardInfo}
+      <br>Journal: ${oneRead.journalEntry}
+      <hr>`;
+      document.getElementById("showEntry").innerHTML += result;
+    }
+  }
 }
