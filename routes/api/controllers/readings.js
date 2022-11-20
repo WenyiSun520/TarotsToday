@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   // repsond with the array of the json of the cards
   try {
     if (req.session.isAuthenticated) {
-      console.log("debug: made it into post");
+      // console.log("debug: made it into post");
       // Get username and info
       let currentUsername = req.session.account.username;
       let userInfo = await req.models.Users.findOne({ username: currentUsername });
