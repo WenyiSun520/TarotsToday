@@ -3,7 +3,6 @@ var router = express.Router();
 
 // accepts a query parameter "numOfCards"
 router.get("/", async (req, res) => {
-
   // log a reading with the right amount of cards
   try {
     //for the push
@@ -18,26 +17,31 @@ router.get("/", async (req, res) => {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
   }
-})
+});
 
 router.post("/", async (req, res) => {
   // repsond with the array of the json of the cards
   try {
     if (req.session.isAuthenticated) {
-      // console.log("debug: made it into post");
+      console.log("debug: made it into post");
+      console.log("debug: jonral tetsing:" + req.body.journal);
       // Get username and info
       let currentUsername = req.session.account.username;
-      let userInfo = await req.models.Users.findOne({ username: currentUsername });
+      let userInfo = await req.models.Users.findOne({
+        username: currentUsername,
+      });
       if (userInfo == null) {
         // if this is the first-time user, create a schema for the user and save reading
         let newUser = new req.models.Users({
           username: currentUsername,
-          readings: [{
-            typeOfReading: "SingleCard",
-            cards: [req.body.card_id],
-            journalEntry: "",
-            date: Date()
-          }],
+          readings: [
+            {
+              typeOfReading: "SingleCard",
+              cards: [req.body.card_id],
+              journalEntry: req.body.journal,
+              date: Date(),
+            },
+          ],
         });
         await newUser.save();
       } else {
@@ -45,16 +49,15 @@ router.post("/", async (req, res) => {
         userInfo.readings.push({
           typeOfReading: "SingleCard",
           cards: [req.body.card_id],
-          journalEntry: "",
-          date: Date()
+          journalEntry: req.body.journal,
+          date: Date(),
         });
         await userInfo.save();
       }
 
       res.send({ status: "success" });
-
     } else {
-      // Not signed in 
+      // Not signed in
       console.log("Error saving post: You haven't Login");
       res.send({ status: "Fail", error: "You haven't login" });
     }
@@ -62,8 +65,43 @@ router.post("/", async (req, res) => {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
   }
-
 });
 
+router.get("/entry", async (req, res) => {
+  // log a reading with the right amount of cards
+  try {
+    if (req.session.isAuthenticated) {
+      let currentUsername = req.session.account.username;
+      let userInfo = await req.models.Users.findOne({
+        username: currentUsername,
+      });
+      res.json({ status: "success", readings: userInfo.readings });
+    } else {
+      console.log("Error saving post: You haven't Login");
+      res.send({ status: "Fail", error: "You haven't login" });
+    }
+  } catch (error) {
+    console.log("Error fetching user results", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+
+// accepts a query parameter "numOfCards"
+router.get("/cardId", async (req, res) => {
+  let id = req.query.id;
+
+  // log a reading with the right amount of cards
+  try {
+    // pull all cards
+    let oneCard = await req.models.TarotCard.findOne({ id: id });
+    let result = `Card:${oneCard.name} <br> Description:${oneCard.description}`;
+    console.log("result from backend:" + result);
+    // return the json
+    res.json(result);
+  } catch (error) {
+    console.log("Error connecting to db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
 
 export default router;
