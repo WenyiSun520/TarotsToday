@@ -36,3 +36,7 @@ p {
 #identity-text {
   margin-right: 1.5rem;
 }
+
+.oneCardDisplayImg {
+  max-height: 20rem;
+}

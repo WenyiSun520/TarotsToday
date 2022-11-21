@@ -35,11 +35,16 @@
     <p>Welcome to Tarot Today! Where you can draw a random Tarot!</p>
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
-          <button onclick="loadOneCard()">Press for Tarot Card</button>
+        <div class="col-sm-1">
+          <button onclick="loadReading(1)">Press for Single Tarot Card</button>
+          <button onclick="loadReading(3)">Press for a Three Card Spread</button>
+          <button onclick="loadReading(5)">Press for a Five Card Spread</button>
         </div>
-        <div class="col-sm-4">
-          <div id="results"></div>
+        <div class="col-sm-7">
+          <div class="container">
+            <div class="row" id="cardDisplay"></div>
+            <div class="row" id="descriptionDisplay"></div>
+          </div>
         </div>
         <div id="journal-input" class="col-sm-4">
           <textarea id="journalEntry" rows="10" cols="50" placeholder="Add journal..."></textarea>

@@ -3,21 +3,24 @@ var router = express.Router();
 
 // accepts a query parameter "numOfCards"
 router.get("/", async (req, res) => {
-  // log a reading with the right amount of cards
-  try {
-    //for the push
-    let randNum = Math.floor(Math.random() * 77);
 
-    // pull all cards
-    let oneCard = await req.models.TarotCard.findOne({ id: randNum });
+  let returnHTML
 
-    // return the json of the matching id
-    res.json(oneCard);
-  } catch (error) {
-    console.log("Error connecting to db", error);
-    res.status(500).json({ status: "error", error: error });
+  // get the right html for the different types of readings
+  if (req.query.numOfCards == 1) {
+    returnHTML = await oneCardReading(req)
+  } else if (req.query.numOfCards == 3) {
+    returnHTML = await threeCardReading(req)
+  } else if (req.query.numOfCards == 3) {
+    returnHTML = await fiveCardReading(req)
   }
+
+  console.log("returnHTML: " + returnHTML)
+
+  res.send(returnHTML)
 });
+
+
 
 router.post("/", async (req, res) => {
   // repsond with the array of the json of the cards
@@ -86,7 +89,7 @@ router.get("/entry", async (req, res) => {
   }
 });
 
-// accepts a query parameter "numOfCards"
+
 router.get("/cardId", async (req, res) => {
   let id = req.query.id;
 
@@ -105,3 +108,140 @@ router.get("/cardId", async (req, res) => {
 });
 
 export default router;
+
+
+
+async function oneCardReading(req) {
+
+  try {
+
+    // we need meanings for the different cards in relation to where they are in the 
+    // spread (more relevant in 3-5 card readings)
+    let meanings = [
+      "This card represents you"
+    ]
+
+    // get the json object ready to build
+    let returnHTML = {
+      cardDisplay: "",
+      descriptionDisplay: ""
+    }
+
+    // pick one random card
+    let randNum = Math.floor(Math.random() * 77);
+    let oneCard = await req.models.TarotCard.findOne({ id: randNum });
+
+    // create the html out of the info
+    returnHTML.cardDisplay = `
+      <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([oneCard])}"></div>
+      <div class="col-12 text-center">
+        <img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
+        <p>1</p>
+      </div>
+    `
+    returnHTML.descriptionDisplay = await createDescriptionDisplay([oneCard], meanings)
+
+    // return the html
+    return returnHTML
+
+  } catch (error) {
+    console.log("Error connecting to db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+}
+
+async function threeCardReading(req) {
+  try {
+    let meanings = [
+      "This card represents the past",
+      "This card represents the present",
+      "This card represents the future"
+    ]
+
+    // get the json object ready to build
+    let returnHTML = {
+      cardDisplay: "",
+      descriptionDisplay: ""
+    }
+
+    // get the pulled cards array ready
+    let cards = []
+
+    // pick one 3 random cards
+    for (let i = 1; i < 4; i++) {
+      let randNum = Math.floor(Math.random() * 77);
+      let oneCard = await req.models.TarotCard.findOne({ id: randNum });
+
+      // if it's not already in the array add it to the array
+      if (!cards.includes(oneCard)) {
+        cards.push(oneCard)
+      } else { //otherwise go another roung
+        i--
+      }
+
+    }
+
+    // create the html out of the info
+
+    // create the card display html
+    cards.map((card, index) => {
+      returnHTML.cardDisplay += `
+        <div class="col-4 text-center">
+          <img class="oneCardDisplayImg" src="imgs/cards/${card.img}" alt="${card.name}" />
+          <p>${index+1}</p>
+        </div>
+      `
+    })
+
+    // create the description display html
+    returnHTML.descriptionDisplay = await createDescriptionDisplay(cards, meanings)
+
+    // return the results
+    return returnHTML
+
+  } catch (error) {
+    console.log("Error connecting to db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+}
+
+async function fiveCardReading(req) {
+  let returnHTML = ``
+
+  // pick five random cards
+
+  // create the html out of the info
+
+  // return the html
+
+  return returnHTML
+}
+
+
+
+async function createDescriptionDisplay(cards, meanings) {
+
+  console.log("made it into the createDescriptionDisplay() (readings.js)")
+
+  let descriptionDisplay = ''
+
+  for (let i = 0; i < cards.length; i++) {
+    descriptionDisplay +=  `
+      <div class="row">
+        <div class="col-1">${i+1}</div>
+        <div class="col-5"> 
+          <h2>${cards[i].name}</h2>
+          <p>${cards[i].description}</p>
+        </div>
+        <div class="col-1"> ➡ </div>
+        <div class="col-5">
+          <p>${meanings[i]}</p>
+        </div>
+      </div>
+    `
+  }
+
+  console.log("descriptionDisplay: " + descriptionDisplay)
+
+  return descriptionDisplay
+}
