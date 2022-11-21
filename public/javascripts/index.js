@@ -3,18 +3,13 @@ async function init() {
   await loadEntry();
 }
 
-async function loadOneCard() {
-  // pull one random card
-  // pull all cards
-  let response = await fetch("api/readings");
-  let cardData = await response.json();
-  let htmlReturn = `
-    <h2>${cardData.name}</h2>
-    <img src="../imgs/cards/${cardData.img}" alt="${cardData.name}" />
-    <p>Description: ${cardData.description}</p>
-    <p class="d-none" id="cardId">${cardData.id}</p>
-    `;
-  document.getElementById("results").innerHTML = htmlReturn;
+async function loadReading(numOfCards) {
+  let htmlJSON = await fetchJSON("api/readings?numOfCards=" + numOfCards);
+  console.log("loadReading, htmlJSON: " + htmlJSON.cardDisplay)
+  //let htmlJSON = await response.json();
+
+  document.getElementById("cardDisplay").innerHTML = htmlJSON.cardDisplay;
+  document.getElementById("descriptionDisplay").innerHTML = htmlJSON.descriptionDisplay;
 }
 
 async function saveNewEntry() {
