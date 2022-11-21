@@ -18,12 +18,16 @@ async function loadReading(numOfCards) {
 
 async function saveNewEntry() {
   let journal = document.getElementById("journalEntry").value;
-  //debug:
-  console.log("Jounal: " + journal);
-  console.log("TarotId: " + cardsId);
+  if (cardsId.length == 0) {
+    alert("Please draw Tarot cards");
+  } else {
+    //debug:
+    console.log("Jounal: " + journal);
+    console.log("TarotId: " + cardsId);
 
-  await postEntryAndReading(journal);
-  init();
+    await postEntryAndReading(journal);
+    init();
+  }
 }
 
 async function postEntryAndReading(journal) {
@@ -51,36 +55,36 @@ async function postEntryAndReading(journal) {
     inputFeedback.textContent = "Fail!";
   }
   document.getElementById("journal-input")
-  .insertBefore(inputFeedback, showEntry);
+    .insertBefore(inputFeedback, showEntry);
 }
 
 async function loadEntry() {
   let userIdentity = await fetchJSON(`api/users/myIdentity`);
-  if(userIdentity.status == "loggedin"){
-  let username = userIdentity.userInfo.username;
-  //debug:
-  // console.log("LoadEntry: username: " + username);
-  let response = await fetch("api/readings/user?username=" + username);
-  // console.log("response: "+response)
-  let responseJson = await response.json();
-  // console.log("responseJson: " + responseJson);
-  for (let i = 0; i < responseJson.length; i++) {
-    let oneRead = responseJson[i];
-    let cardDescription = await loadCardsDescription(oneRead.cards);
-    let result = `Date: ${oneRead.date}
+  if (userIdentity.status == "loggedin") {
+    let username = userIdentity.userInfo.username;
+    //debug:
+    // console.log("LoadEntry: username: " + username);
+    let response = await fetch("api/readings/user?username=" + username);
+    // console.log("response: "+response)
+    let responseJson = await response.json();
+    // console.log("responseJson: " + responseJson);
+    for (let i = 0; i < responseJson.length; i++) {
+      let oneRead = responseJson[i];
+      let cardDescription = await loadCardsDescription(oneRead.cards);
+      let result = `Date: ${oneRead.date}
                     <br> Type Of Reading: ${oneRead.typeOfReading}
                     <br> Reading results:<br> ${cardDescription}
                     <br> Journal: ${oneRead.journalEntry}
                     <hr>`;
-    document.getElementById("showEntry").innerHTML += result;
+      document.getElementById("showEntry").innerHTML += result;
+    }
   }
 }
-}
 
-async function loadCardsDescription(cardsArr){
+async function loadCardsDescription(cardsArr) {
   let results = ""
-  for(let i=0;i<cardsArr.length;i++){
-    let oneDescription = await fetch("api/readings/cardId?id="+cardsArr[i]);
+  for (let i = 0; i < cardsArr.length; i++) {
+    let oneDescription = await fetch("api/readings/cardId?id=" + cardsArr[i]);
     oneDescription = await oneDescription.json();
     results += `${oneDescription}+<br>`;
     // console.log("Results from loadCardsDescription()"+results)
