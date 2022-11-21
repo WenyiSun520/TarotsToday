@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   // repsond with the array of the json of the cards
   try {
+   
     if (req.session.isAuthenticated) {
       console.log("debug: made it into post");
       console.log("debug: jonral tetsing:" + req.body.journal);
@@ -39,7 +40,9 @@ router.post("/", async (req, res) => {
               typeOfReading: req.body.typeOfReading,
               cards: req.body.card_id,
               journalEntry: req.body.journal,
-              date: Date(),
+              date: Date().toLocaleString("en-US", {
+                timeZone: "America/Los_Angeles"
+              }),
             },
           ],
         });
@@ -50,7 +53,7 @@ router.post("/", async (req, res) => {
           typeOfReading: req.body.typeOfReading,
           cards: req.body.card_id,
           journalEntry: req.body.journal,
-          date: Date(),
+          date: Date().toLocaleString("en-US"),
         });
         await userInfo.save();
       }
@@ -120,14 +123,15 @@ async function oneCardReading(req) {
     returnHTML.cardsId.push(randNum);
 
     // create the html out of the info
+    let random_boolean = Math.random();
     returnHTML.cardDisplay = `
       <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([
         oneCard,
       ])}"></div>
       <div class="col-12 text-center">
-        <img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${
-      oneCard.name
-    }" />
+        <img class="oneCardDisplayImg ${
+          random_boolean < 0.5 ? "rotate-img" : ""
+        }" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
         <p>1</p>
       </div>
     `;
@@ -181,16 +185,16 @@ async function threeCardReading(req) {
 
     // create the card display html
     cards.map((card, index) => {
+       let random_boolean = Math.random();
       returnHTML.cardDisplay += `
         <div class="col-4 text-center">
-          <img class="oneCardDisplayImg" src="imgs/cards/${card.img}" alt="${
-        card.name
-      }" />
+          <img class="oneCardDisplayImg ${
+            random_boolean < 0.5 ? 'rotate-img' : ""
+          }" src="imgs/cards/${card.img}" alt="${card.name}" />
           <p>${index + 1}</p>
         </div>
       `;
     });
-
     // create the description display html
     returnHTML.descriptionDisplay = await createDescriptionDisplay(
       cards,
