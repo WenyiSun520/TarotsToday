@@ -3,24 +3,21 @@ var router = express.Router();
 
 // accepts a query parameter "numOfCards"
 router.get("/", async (req, res) => {
-
-  let returnHTML
+  let returnHTML;
 
   // get the right html for the different types of readings
   if (req.query.numOfCards == 1) {
-    returnHTML = await oneCardReading(req)
+    returnHTML = await oneCardReading(req);
   } else if (req.query.numOfCards == 3) {
-    returnHTML = await threeCardReading(req)
+    returnHTML = await threeCardReading(req);
   } else if (req.query.numOfCards == 3) {
-    returnHTML = await fiveCardReading(req)
+    returnHTML = await fiveCardReading(req);
   }
 
-  console.log("returnHTML: " + returnHTML)
+  console.log("returnHTML: " + returnHTML);
 
-  res.send(returnHTML)
+  res.send(returnHTML);
 });
-
-
 
 router.post("/", async (req, res) => {
   // repsond with the array of the json of the cards
@@ -39,8 +36,8 @@ router.post("/", async (req, res) => {
           username: currentUsername,
           readings: [
             {
-              typeOfReading: "SingleCard",
-              cards: [req.body.card_id],
+              typeOfReading: req.body.typeOfReading,
+              cards: req.body.card_id,
               journalEntry: req.body.journal,
               date: Date(),
             },
@@ -50,15 +47,14 @@ router.post("/", async (req, res) => {
       } else {
         // Existing user
         userInfo.readings.push({
-          typeOfReading: "SingleCard",
-          cards: [req.body.card_id],
+          typeOfReading: req.body.typeOfReading,
+          cards: req.body.card_id,
           journalEntry: req.body.journal,
           date: Date(),
         });
         await userInfo.save();
       }
-
-      res.send({ status: "success" });
+      res.send({ status: "Success" });
     } else {
       // Not signed in
       console.log("Error saving post: You haven't Login");
@@ -70,25 +66,21 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/entry", async (req, res) => {
-  // log a reading with the right amount of cards
+router.get("/user", async (req, res) => {
+  let username = req.query.username;
   try {
-    if (req.session.isAuthenticated) {
-      let currentUsername = req.session.account.username;
-      let userInfo = await req.models.Users.findOne({
-        username: currentUsername,
-      });
-      res.json({ status: "success", readings: userInfo.readings });
-    } else {
-      console.log("Error saving post: You haven't Login");
-      res.send({ status: "Fail", error: "You haven't login" });
-    }
+   let user = await req.models.Users.findOne({ // find user in User collection and get all the readings
+     username: username,
+   });
+   let userReadings = user.readings;
+   //debug:
+   // console.log("displaying fetched userInfo: "+userReadings);
+   res.json(userReadings)
   } catch (error) {
     console.log("Error fetching user results", error);
     res.status(500).json({ status: "error", error: error });
   }
 });
-
 
 router.get("/cardId", async (req, res) => {
   let id = req.query.id;
@@ -98,7 +90,7 @@ router.get("/cardId", async (req, res) => {
     // pull all cards
     let oneCard = await req.models.TarotCard.findOne({ id: id });
     let result = `Card:${oneCard.name} <br> Description:${oneCard.description}`;
-    console.log("result from backend:" + result);
+    // console.log("result from backend:" + result);
     // return the json
     res.json(result);
   } catch (error) {
@@ -109,41 +101,43 @@ router.get("/cardId", async (req, res) => {
 
 export default router;
 
-
-
 async function oneCardReading(req) {
-
   try {
-
-    // we need meanings for the different cards in relation to where they are in the 
+    // we need meanings for the different cards in relation to where they are in the
     // spread (more relevant in 3-5 card readings)
-    let meanings = [
-      "This card represents you"
-    ]
+    let meanings = ["This card represents you"];
 
     // get the json object ready to build
     let returnHTML = {
       cardDisplay: "",
-      descriptionDisplay: ""
-    }
+      descriptionDisplay: "",
+      cardsId: []
+    };
 
     // pick one random card
     let randNum = Math.floor(Math.random() * 77);
     let oneCard = await req.models.TarotCard.findOne({ id: randNum });
+    returnHTML.cardsId.push(randNum);
 
     // create the html out of the info
     returnHTML.cardDisplay = `
-      <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([oneCard])}"></div>
+      <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([
+        oneCard,
+      ])}"></div>
       <div class="col-12 text-center">
-        <img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
+        <img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${
+      oneCard.name
+    }" />
         <p>1</p>
       </div>
-    `
-    returnHTML.descriptionDisplay = await createDescriptionDisplay([oneCard], meanings)
+    `;
+    returnHTML.descriptionDisplay = await createDescriptionDisplay(
+      [oneCard],
+      meanings
+    );
 
     // return the html
-    return returnHTML
-
+    return returnHTML;
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
@@ -155,30 +149,32 @@ async function threeCardReading(req) {
     let meanings = [
       "This card represents the past",
       "This card represents the present",
-      "This card represents the future"
-    ]
+      "This card represents the future",
+    ];
 
     // get the json object ready to build
     let returnHTML = {
       cardDisplay: "",
-      descriptionDisplay: ""
-    }
+      descriptionDisplay: "",
+      cardsId:[]
+    };
 
     // get the pulled cards array ready
-    let cards = []
+    let cards = [];
 
     // pick one 3 random cards
     for (let i = 1; i < 4; i++) {
       let randNum = Math.floor(Math.random() * 77);
       let oneCard = await req.models.TarotCard.findOne({ id: randNum });
+      returnHTML.cardsId.push(randNum);
 
       // if it's not already in the array add it to the array
       if (!cards.includes(oneCard)) {
-        cards.push(oneCard)
-      } else { //otherwise go another roung
-        i--
+        cards.push(oneCard);
+      } else {
+        //otherwise go another roung
+        i--;
       }
-
     }
 
     // create the html out of the info
@@ -187,18 +183,22 @@ async function threeCardReading(req) {
     cards.map((card, index) => {
       returnHTML.cardDisplay += `
         <div class="col-4 text-center">
-          <img class="oneCardDisplayImg" src="imgs/cards/${card.img}" alt="${card.name}" />
-          <p>${index+1}</p>
+          <img class="oneCardDisplayImg" src="imgs/cards/${card.img}" alt="${
+        card.name
+      }" />
+          <p>${index + 1}</p>
         </div>
-      `
-    })
+      `;
+    });
 
     // create the description display html
-    returnHTML.descriptionDisplay = await createDescriptionDisplay(cards, meanings)
+    returnHTML.descriptionDisplay = await createDescriptionDisplay(
+      cards,
+      meanings
+    );
 
     // return the results
-    return returnHTML
-
+    return returnHTML;
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
@@ -206,7 +206,7 @@ async function threeCardReading(req) {
 }
 
 async function fiveCardReading(req) {
-  let returnHTML = ``
+  let returnHTML = ``;
 
   // pick five random cards
 
@@ -214,21 +214,18 @@ async function fiveCardReading(req) {
 
   // return the html
 
-  return returnHTML
+  return returnHTML;
 }
 
-
-
 async function createDescriptionDisplay(cards, meanings) {
+  console.log("made it into the createDescriptionDisplay() (readings.js)");
 
-  console.log("made it into the createDescriptionDisplay() (readings.js)")
-
-  let descriptionDisplay = ''
+  let descriptionDisplay = "";
 
   for (let i = 0; i < cards.length; i++) {
-    descriptionDisplay +=  `
+    descriptionDisplay += `
       <div class="row">
-        <div class="col-1">${i+1}</div>
+        <div class="col-1">${i + 1}</div>
         <div class="col-5"> 
           <h2>${cards[i].name}</h2>
           <p>${cards[i].description}</p>
@@ -238,10 +235,10 @@ async function createDescriptionDisplay(cards, meanings) {
           <p>${meanings[i]}</p>
         </div>
       </div>
-    `
+    `;
   }
 
-  console.log("descriptionDisplay: " + descriptionDisplay)
+  console.log("descriptionDisplay: " + descriptionDisplay);
 
-  return descriptionDisplay
+  return descriptionDisplay;
 }
