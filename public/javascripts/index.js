@@ -55,13 +55,14 @@ async function postEntryAndReading(journal) {
     inputFeedback.textContent = "Fail!";
   }
   document.getElementById("journal-input")
-  .insertBefore(inputFeedback, showEntry);
+    .insertBefore(inputFeedback, showEntry);
 }
 
 async function loadEntry() {
     document.getElementById("showEntry").innerHTML="";
   //get username to find user entries in uesers collection
   let userIdentity = await fetchJSON(`api/users/myIdentity`);
+
   if(userIdentity.status == "loggedin"){
   let username = userIdentity.userInfo.username;
   //debug:
@@ -86,10 +87,10 @@ async function loadEntry() {
 }
 }
 
-async function loadCardsDescription(cardsArr){
+async function loadCardsDescription(cardsArr) {
   let results = ""
-  for(let i=0;i<cardsArr.length;i++){
-    let oneDescription = await fetch("api/readings/cardId?id="+cardsArr[i]);
+  for (let i = 0; i < cardsArr.length; i++) {
+    let oneDescription = await fetch("api/readings/cardId?id=" + cardsArr[i]);
     oneDescription = await oneDescription.json();
     results += `${oneDescription}+<br>`;
     // console.log("Results from loadCardsDescription()"+results)
