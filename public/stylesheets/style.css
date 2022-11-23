@@ -52,6 +52,71 @@ p {
   /* IE9 */
   transform: rotate(180deg);
   /* W3C compliant browsers */
+}
+
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.entry-bg {
+  margin: 5px;
+  border-radius: 15px;
+  background-image: url(../imgs/entry-bg.webp);
+  background-size: 300px 450px;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 450px;
+}
 
 
+.entry-result {
+  opacity: 0;
+  border-radius: 15px;
+  font-size: 16px;
+  /* border: 1px solid; */
+  margin: 2px;
+  padding: 15px;
+  width: 300px;
+  height: 450px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.entry-result:hover {
+  opacity: 0.8;
+  background-color: #b59d6d;
+}
+
+
+.entry-result p {
+  display: block;
+}
+
+.entry-result {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+
+}
+
+
+.entry-result .one-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid;
+}
+
+.entry-result .one-result .title {
+  text-align: center;
+}
+
+.entry-result .journal-p {
+  display: block;
+  margin-top: 10px;
 }

@@ -1,5 +1,6 @@
 async function init() {
   document.getElementById("journalEntry").value = "";
+  document.getElementById("showfeedback").value = "";
   await loadIdentity();
   await loadEntry();
 }
@@ -18,12 +19,15 @@ async function loadReading(numOfCards) {
 
 async function saveNewEntry() {
   let journal = document.getElementById("journalEntry").value;
-  //debug:
-  console.log("Jounal: " + journal);
-  console.log("TarotId: " + cardsId);
-
-  await postEntryAndReading(journal);
-  init();
+  if (cardsId.length == 0) {
+    alert("Please draw Tarot cards");
+  } else {
+    //debug:
+    console.log("Jounal: " + journal);
+    console.log("TarotId: " + cardsId);
+    await postEntryAndReading(journal);
+    init();
+  }
 }
 
 async function postEntryAndReading(journal) {
@@ -65,10 +69,11 @@ async function loadEntry() {
   let response = await fetch("api/readings/user?username=" + username); //get user entries
   let responseJson = await response.json();
   // console.log("responseJson: " + responseJson);
-  for (let i = 0; i < responseJson.length; i++) {
-    let oneRead = responseJson[i];
+
+    let oneRead = responseJson[responseJson.length - 1];
     let cardDescription = await loadCardsDescription(oneRead.cards); // load cards description 
-    let result = `<div class="entry-result">
+    let result = `<div class="single-result">
+                    <h3> Your Most Recent Reading: </h3>
                     Date: ${oneRead.date}
                     <br> Type Of Reading: ${oneRead.typeOfReading}
                     <br> Reading results:
@@ -77,7 +82,7 @@ async function loadEntry() {
                     <hr>
                     </div>`;
     document.getElementById("showEntry").innerHTML += result;
-  }
+
 }
 }
 
