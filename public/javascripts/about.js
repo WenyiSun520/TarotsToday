@@ -1,25 +1,19 @@
-// import {cards} from '../../data/tarotDeck.json'
-// TODO make a button/link that accesses the page
-import {promises as fs} from 'fs'
-let cards = fs.readFile("../../data/tarotDeck.json", (err, jsonString) => {
-  if (err) {
-    console.log("File read failed:", err);
-    return;
-  }
-  return jsonString
-});
-
-export async function getAllCards() {
+async function init() {
     let htmlReturn = ""
+    try {
+        let allCardsJSON = await fetch(`../api/readings/all`);
 
-    cards.forEach(card => {
-        htmlReturn += `
+        allCardsJSON.forEach(card => {
+            htmlReturn += `
         <p><strong>${card.name}</strong></p>
-        <img src="${card.img}">
+        <img src="/imgs/${card.img}">
         <p>${card.description}</p>
         <br>
         `
-    })
+        })
 
-    document.getElementById("about-section").innerHTML = htmlReturn
+        document.getElementById("about-section").innerHTML = htmlReturn
+    } catch (error) {
+        document.getElementById("about-section").innerHTML = `Hello I'm here ${error}`
+    }
 }

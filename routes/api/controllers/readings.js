@@ -99,6 +99,20 @@ router.get("/cardId", async (req, res) => {
   }
 });
 
+router.get("/all", async (req, res) => {
+  // return all cards in json format
+  try {
+    // pull all cards
+    let allCards = await req.models.TarotCard.find();
+    // console.log(JSON.stringify(allCards));
+    // return the json
+    res.json(JSON.stringify(allCards));
+  } catch (error) {
+    console.log("Error connecting to db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+
 export default router;
 
 async function oneCardReading(req) {
