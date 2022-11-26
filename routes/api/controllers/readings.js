@@ -109,10 +109,10 @@ router.get("/all", async (req, res) => {
   // return all cards in json format
   try {
     // pull all cards
-    let allCards = await req.models.TarotCard.find();
-    // console.log(JSON.stringify(allCards));
-    // return the json
-    res.json(JSON.stringify(allCards));
+    await req.models.TarotCard.find({}).then((doc) => {
+      // console.log(JSON.stringify(doc))
+      res.json(doc)
+    })
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });

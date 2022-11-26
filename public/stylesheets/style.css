@@ -28,6 +28,10 @@ p {
   font-size: 1.25rem;
 }
 
+.nav-item {
+  margin-right: 1rem;
+}
+
 #logo {
   max-height: 2rem;
   width: auto;
@@ -119,4 +123,16 @@ p {
 .entry-result .journal-p {
   display: block;
   margin-top: 10px;
+}
+
+.about-card {
+  margin-bottom: 1rem;
+}
+
+.about-card-name {
+  font-size: large;
+}
+
+.about-card-img {
+  height: 25rem;
 }
