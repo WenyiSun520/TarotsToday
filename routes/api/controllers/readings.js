@@ -39,7 +39,9 @@ router.post("/", async (req, res) => {
               typeOfReading: req.body.typeOfReading,
               cards: req.body.card_id,
               journalEntry: req.body.journal,
-              date: Date(),
+              date: Date().toLocaleString("en-US", {
+                timeZone: "America/Los_Angeles",
+              }),
             },
           ],
         });
@@ -50,7 +52,7 @@ router.post("/", async (req, res) => {
           typeOfReading: req.body.typeOfReading,
           cards: req.body.card_id,
           journalEntry: req.body.journal,
-          date: Date(),
+          date: Date().toLocaleString("en-US"),
         });
         await userInfo.save();
       }
@@ -69,13 +71,14 @@ router.post("/", async (req, res) => {
 router.get("/user", async (req, res) => {
   let username = req.query.username;
   try {
-   let user = await req.models.Users.findOne({ // find user in User collection and get all the readings
-     username: username,
-   });
-   let userReadings = user.readings;
-   //debug:
-   // console.log("displaying fetched userInfo: "+userReadings);
-   res.json(userReadings)
+    let user = await req.models.Users.findOne({
+      // find user in User collection and get all the readings
+      username: username,
+    });
+    let userReadings = user.readings;
+    //debug:
+    // console.log("displaying fetched userInfo: "+userReadings);
+    res.json(userReadings);
   } catch (error) {
     console.log("Error fetching user results", error);
     res.status(500).json({ status: "error", error: error });
@@ -89,7 +92,10 @@ router.get("/cardId", async (req, res) => {
   try {
     // pull all cards
     let oneCard = await req.models.TarotCard.findOne({ id: id });
-    let result = `Card:${oneCard.name} <br> Description:${oneCard.description}`;
+    let result = `<div class="one-result">
+    <div class="title">${oneCard.name}</div> 
+    <div class="description">Description:${oneCard.description}</div>
+    </div>`;
     // console.log("result from backend:" + result);
     // return the json
     res.json(result);
@@ -125,7 +131,7 @@ async function oneCardReading(req) {
     let returnHTML = {
       cardDisplay: "",
       descriptionDisplay: "",
-      cardsId: []
+      cardsId: [],
     };
 
     // pick one random card
@@ -134,14 +140,15 @@ async function oneCardReading(req) {
     returnHTML.cardsId.push(randNum);
 
     // create the html out of the info
+    let random_boolean = Math.random();
     returnHTML.cardDisplay = `
       <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([
         oneCard,
       ])}"></div>
       <div class="col-12 text-center">
-        <img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${
-      oneCard.name
-    }" />
+        <img class="oneCardDisplayImg ${
+          random_boolean < 0.5 ? "rotate-img" : ""
+        }" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
         <p>1</p>
       </div>
     `;
@@ -170,7 +177,7 @@ async function threeCardReading(req) {
     let returnHTML = {
       cardDisplay: "",
       descriptionDisplay: "",
-      cardsId:[]
+      cardsId: [],
     };
 
     // get the pulled cards array ready
@@ -195,16 +202,16 @@ async function threeCardReading(req) {
 
     // create the card display html
     cards.map((card, index) => {
+      let random_boolean = Math.random();
       returnHTML.cardDisplay += `
         <div class="col-4 text-center">
-          <img class="oneCardDisplayImg" src="imgs/cards/${card.img}" alt="${
-        card.name
-      }" />
+          <img class="oneCardDisplayImg ${
+            random_boolean < 0.5 ? "rotate-img" : ""
+          }" src="imgs/cards/${card.img}" alt="${card.name}" />
           <p>${index + 1}</p>
         </div>
       `;
     });
-
     // create the description display html
     returnHTML.descriptionDisplay = await createDescriptionDisplay(
       cards,
