@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     returnHTML = await threeCardReading(req);
   }
 
-  console.log("returnHTML: " + returnHTML);
+  //console.log("returnHTML: " + returnHTML);
 
   res.send(returnHTML);
 });
@@ -225,7 +225,7 @@ async function threeCardReading(req) {
 }
 
 async function createDescriptionDisplay(cards, meanings) {
-  console.log("made it into the createDescriptionDisplay() (readings.js)");
+  //console.log("made it into the createDescriptionDisplay() (readings.js)");
 
   let descriptionDisplay = `
     <div class="row">
