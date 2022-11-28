@@ -4,6 +4,7 @@ async function init() {
   await loadIdentity();
   await loadEntry();
 }
+
 let cardsId = []; // create a global array to save fetched cards ids
 async function loadReading(numOfCards) {
   let htmlJSON = await fetchJSON("api/readings?numOfCards=" + numOfCards);
