@@ -10,8 +10,6 @@ router.get("/", async (req, res) => {
     returnHTML = await oneCardReading(req);
   } else if (req.query.numOfCards == 3) {
     returnHTML = await threeCardReading(req);
-  } else if (req.query.numOfCards == 3) {
-    returnHTML = await fiveCardReading(req);
   }
 
   console.log("returnHTML: " + returnHTML);
@@ -104,7 +102,7 @@ export default router;
 async function oneCardReading(req) {
   try {
     // we need meanings for the different cards in relation to where they are in the
-    // spread (more relevant in 3-5 card readings)
+    // spread (more relevant in the 3 card readings)
     let meanings = ["This card represents you"];
 
     // get the json object ready to build
@@ -205,22 +203,16 @@ async function threeCardReading(req) {
   }
 }
 
-async function fiveCardReading(req) {
-  let returnHTML = ``;
-
-  // pick five random cards
-
-  // create the html out of the info
-
-  // return the html
-
-  return returnHTML;
-}
-
 async function createDescriptionDisplay(cards, meanings) {
   console.log("made it into the createDescriptionDisplay() (readings.js)");
 
-  let descriptionDisplay = "";
+  let descriptionDisplay = `
+    <div class="row">
+      <div class="col-1">Number</div>
+      <div class="col-5">Card Name and Description</div>
+      <div class="col-1"></div>
+      <div class="col-5">Meaning</div>
+    </div>`;
 
   for (let i = 0; i < cards.length; i++) {
     descriptionDisplay += `
@@ -238,7 +230,7 @@ async function createDescriptionDisplay(cards, meanings) {
     `;
   }
 
-  console.log("descriptionDisplay: " + descriptionDisplay);
+  //console.log("descriptionDisplay: " + descriptionDisplay);
 
   return descriptionDisplay;
 }
