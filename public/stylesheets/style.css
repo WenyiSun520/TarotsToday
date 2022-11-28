@@ -136,3 +136,25 @@ p {
 .about-card-img {
   height: 25rem;
 }
+
+#introParagraph {
+  padding-bottom: 2rem;
+}
+
+#cardDisplay {
+  padding-bottom: 2rem;
+}
+
+#descriptionHeader {
+  background-color: rgb(198, 198, 198);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.descrRow {
+  margin-bottom: 1rem;
+}
+
+.readingButton {
+  margin-bottom: 1rem;
+}

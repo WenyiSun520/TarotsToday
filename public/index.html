@@ -34,12 +34,12 @@
   <main>
     <h1>Tarot Today</h1>
     <div id="name-greeting"></div>
-    <p>Welcome to Tarot Today! Where you can draw a random Tarot!</p>
+    <p id="introParagraph" >Welcome to Tarot Today! Where you can draw a random Tarot!</p>
     <div class="container">
       <div class="row">
         <div class="col-sm-1">
-          <button onclick="loadReading(1)">Press for Single Tarot Card</button>
-          <button onclick="loadReading(3)">Press for a Three Card Spread</button>
+          <button class="readingButton" onclick="loadReading(1)">Press for Single Tarot Card</button>
+          <button class="readingButton" onclick="loadReading(3)">Press for a Three Card Spread</button>
         </div>
         <div class="col-sm-7">
           <div class="container">

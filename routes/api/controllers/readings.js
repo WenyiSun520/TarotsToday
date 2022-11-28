@@ -228,8 +228,8 @@ async function createDescriptionDisplay(cards, meanings) {
   //console.log("made it into the createDescriptionDisplay() (readings.js)");
 
   let descriptionDisplay = `
-    <div class="row">
-      <div class="col-1">Number</div>
+    <div class="row" id="descriptionHeader" >
+      <div class="col-1">Num</div>
       <div class="col-5">Card Name and Description</div>
       <div class="col-1"></div>
       <div class="col-5">Meaning</div>
@@ -237,7 +237,7 @@ async function createDescriptionDisplay(cards, meanings) {
 
   for (let i = 0; i < cards.length; i++) {
     descriptionDisplay += `
-      <div class="row">
+      <div class="row descrRow">
         <div class="col-1">${i + 1}</div>
         <div class="col-5"> 
           <h2>${cards[i].name}</h2>
