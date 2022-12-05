@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="javascripts/utils.js"></script>
     <script src="javascripts/about.js"></script>
+    <script src="javascripts/identity.js"></script>
+</head>
 
 <body onload="init()">
     <header>
@@ -21,6 +23,9 @@
             </span>
             <span class="navbar-nav ms-auto">
                 <p><a href="/about-tarot.html" class="nav-item">About Tarot</a></p>
+                <p id="identity-text"></p>
+                <p><a href="/signin" id="loginLink" class="nav-item">Log In</a></p>
+                <p><a href="/signout" id="logoutLink" class="d-none nav-item">Log Out</a></p>
             </span>
         </nav>
     </header>
