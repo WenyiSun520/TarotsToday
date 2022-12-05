@@ -11,9 +11,6 @@ router.get("/", async (req, res) => {
   } else if (req.query.numOfCards == 3) {
     returnHTML = await threeCardReading(req);
   }
-
-  //console.log("returnHTML: " + returnHTML);
-
   res.send(returnHTML);
 });
 
@@ -21,8 +18,6 @@ router.post("/", async (req, res) => {
   // repsond with the array of the json of the cards
   try {
     if (req.session.isAuthenticated) {
-      console.log("debug: made it into post");
-      console.log("debug: jonral tetsing:" + req.body.journal);
       // Get username and info
       let currentUsername = req.session.account.username;
       let userInfo = await req.models.Users.findOne({
@@ -74,8 +69,6 @@ router.get("/user", async (req, res) => {
       username: username,
     });
     let userReadings = user.readings;
-    //debug:
-    // console.log("displaying fetched userInfo: "+userReadings);
     res.json(userReadings);
   } catch (error) {
     console.log("Error fetching user results", error);
@@ -94,7 +87,6 @@ router.get("/cardId", async (req, res) => {
     <div class="title">${oneCard.name}</div> 
     <div class="description">Description:${oneCard.description}</div>
     </div>`;
-    // console.log("result from backend:" + result);
     // return the json
     res.json(result);
   } catch (error) {
@@ -108,7 +100,6 @@ router.get("/all", async (req, res) => {
   try {
     // pull all cards
     await req.models.TarotCard.find({}).then((doc) => {
-      // console.log(JSON.stringify(doc))
       res.json(doc)
     })
   } catch (error) {
@@ -141,12 +132,11 @@ async function oneCardReading(req) {
     let random_boolean = Math.random();
     returnHTML.cardDisplay = `
       <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([
-        oneCard,
-      ])}"></div>
+      oneCard,
+    ])}"></div>
       <div class="col-12 text-center">
-        <img class="oneCardDisplayImg ${
-          random_boolean < 0.5 ? "rotate-img" : ""
-        }" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
+        <img class="oneCardDisplayImg ${random_boolean < 0.5 ? "rotate-img" : ""
+      }" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
         <p>1</p>
       </div>
     `;
@@ -191,25 +181,23 @@ async function threeCardReading(req) {
       if (!cards.includes(oneCard)) {
         cards.push(oneCard);
       } else {
-        //otherwise go another roung
+        //otherwise go another round
         i--;
       }
     }
-
-    // create the html out of the info
 
     // create the card display html
     cards.map((card, index) => {
       let random_boolean = Math.random();
       returnHTML.cardDisplay += `
         <div class="col-4 text-center">
-          <img class="oneCardDisplayImg ${
-            random_boolean < 0.5 ? "rotate-img" : ""
-          }" src="imgs/cards/${card.img}" alt="${card.name}" />
+          <img class="oneCardDisplayImg ${random_boolean < 0.5 ? "rotate-img" : ""
+        }" src="imgs/cards/${card.img}" alt="${card.name}" />
           <p>${index + 1}</p>
         </div>
       `;
     });
+    
     // create the description display html
     returnHTML.descriptionDisplay = await createDescriptionDisplay(
       cards,
@@ -225,8 +213,6 @@ async function threeCardReading(req) {
 }
 
 async function createDescriptionDisplay(cards, meanings) {
-  //console.log("made it into the createDescriptionDisplay() (readings.js)");
-
   let descriptionDisplay = `
     <div class="row" id="descriptionHeader" >
       <div class="col-1">Num</div>
@@ -250,8 +236,6 @@ async function createDescriptionDisplay(cards, meanings) {
       </div>
     `;
   }
-
-  //console.log("descriptionDisplay: " + descriptionDisplay);
 
   return descriptionDisplay;
 }
