@@ -80,7 +80,6 @@ async function loadEntry() {
                     <hr>
                     </div>`;
     document.getElementById("showEntry").innerHTML += result;
-
   }
 }
 
