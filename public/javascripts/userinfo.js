@@ -8,16 +8,22 @@ async function loadEntry() {
     // get user entries
     let response = await fetch("api/readings/user?username=" + username); 
     let responseJson = await response.json();
+
+    document.getElementById("userInfoName").innerHTML = `<h1>${username}</h1>`
+
     for (let i = 0; i < responseJson.length; i++) {
       let oneRead = responseJson[i];
 
-      let result = `  <div class="entry-bg">
+      let cleanDate = oneRead.date.substring(0, 10)
+      let cleanType = oneRead.typeOfReading.substring(0, oneRead.typeOfReading.length - 7)
+
+      let result = `  <div class="entry-bg"> 
     <div class="entry-result">
-                    Date: ${oneRead.date}
-                    <p>Type Of Reading: ${oneRead.typeOfReading}</p>
-                    <p>Cards:</p>
+                    <p><strong>Date:</strong> ${cleanDate} at ${oneRead.date.substring(11, 16)}</p>
+                    <p><strong>Type Of Reading:</strong> ${cleanType} card reading</p>
+                    <p><strong>Cards:</strong></p>
                     ${await loadCardsDescription(oneRead.cards)}
-                    <p class="journal-p">Journal: ${oneRead.journalEntry}</p>
+                    <p class="journal-p"><strong>Journal:</strong> ${oneRead.journalEntry}</p>
                     </div>
                     </div>
                    `;

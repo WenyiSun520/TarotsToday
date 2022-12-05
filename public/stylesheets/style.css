@@ -119,6 +119,10 @@ p {
   text-align: center;
 }
 
+.one-result {
+  margin-left: .5rem;
+}
+
 .entry-result .journal-p {
   display: block;
   margin-top: 10px;
@@ -156,4 +160,13 @@ p {
 
 .readingButton {
   margin-bottom: 1rem;
+  background-color: #beb095;
+  border-width: .05rem;
+}
+
+#saveButton {
+  background-color: #b59d6d;
+  margin-top: .5rem;
+  margin-bottom: 2rem;
+  border-width: .05rem;
 }
