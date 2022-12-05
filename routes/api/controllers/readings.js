@@ -85,7 +85,7 @@ router.get("/cardId", async (req, res) => {
     let oneCard = await req.models.TarotCard.findOne({ id: id });
     let result = `<div class="one-result">
     <div class="title">${oneCard.name}</div> 
-    <div class="description">Description:${oneCard.description}</div>
+    <div class="description"><strong>Description:</strong> ${oneCard.description}</div>
     </div>`;
     // return the json
     res.json(result);

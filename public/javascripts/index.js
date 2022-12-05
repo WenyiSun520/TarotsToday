@@ -72,11 +72,11 @@ async function loadEntry() {
     let cardDescription = await loadCardsDescription(oneRead.cards);
     let result = `<div class="single-result">
                     <h3> Your Most Recent Reading: </h3>
-                    Date: ${oneRead.date}
-                    <br> Type Of Reading: ${oneRead.typeOfReading}
-                    <br> Reading results:
-                    <br> ${cardDescription}
-                    Journal: ${oneRead.journalEntry}
+                    <p><strong>Date:</strong> ${oneRead.date.substring(0, 10)} at ${oneRead.date.substring(11, 16)}</p>
+                    <p><strong>Type Of Reading:</strong> ${oneRead.typeOfReading.substring(0, oneRead.typeOfReading.length - 7)} card reading</p>
+                    <p><strong>Reading results:</strong></p>
+                    <p>${cardDescription}</p>
+                    <p><strong>Journal:</strong> ${oneRead.journalEntry}</p>
                     <hr>
                     </div>`;
     document.getElementById("showEntry").innerHTML += result;
