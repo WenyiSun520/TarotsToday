@@ -1,5 +1,3 @@
-
-
 export default async function previewReadings(cardsIdArr) {
   if (cardsIdArr.length == 1) {
     return previewSingle(cardsIdArr[0]);

@@ -69,10 +69,10 @@ p {
   margin: 5px;
   border-radius: 15px;
   background-image: url(../imgs/entry-bg.webp);
-  background-size: 300px 450px;
+  background-size: 300px 515px;
   background-repeat: no-repeat;
   width: 300px;
-  height: 450px;
+  height: 515px;
 }
 
 
@@ -80,11 +80,10 @@ p {
   opacity: 0;
   border-radius: 15px;
   font-size: 16px;
-  /* border: 1px solid; */
   margin: 2px;
   padding: 15px;
   width: 300px;
-  height: 450px;
+  height: 515px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -93,7 +92,7 @@ p {
 
 .entry-result:hover {
   opacity: 0.8;
-  background-color: #b59d6d;
+  background-color: white;
 }
 
 
