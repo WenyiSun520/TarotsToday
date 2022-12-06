@@ -23,9 +23,6 @@ async function saveNewEntry() {
   if (cardsId.length == 0) {
     alert("Please draw Tarot cards");
   } else {
-    //debug:
-    console.log("Jounal: " + journal);
-    console.log("TarotId: " + cardsId);
     await postEntryAndReading(journal);
     init();
   }
@@ -64,28 +61,26 @@ async function loadMostRecentEntry() {
   //get username to find user entries in uesers collection
   let userIdentity = await fetchJSON(`api/users/myIdentity`);
 
-  if(userIdentity.status == "loggedin"){
-  let username = userIdentity.userInfo.username;
-  //debug:
-  // console.log("LoadEntry: username: " + username);
-  let response = await fetch("api/readings/user?username=" + username); //get user entries
-  let responseJson = await response.json();
-  // console.log("responseJson: " + responseJson);
+  if (userIdentity.status == "loggedin") {
+    let username = userIdentity.userInfo.username;
+    // get user entries
+    let response = await fetch("api/readings/user?username=" + username);
+    let responseJson = await response.json();
 
     let oneRead = responseJson[responseJson.length - 1];
-    let cardDescription = await loadCardsDescription(oneRead.cards); // load cards description 
+    // load cards description
+    let cardDescription = await loadCardsDescription(oneRead.cards);
     let result = `<div class="single-result">
                     <h3> Your Most Recent Reading: </h3>
-                    Date: ${oneRead.date}
-                    <br> Type Of Reading: ${oneRead.typeOfReading}
-                    <br> Reading results:
-                    <br> ${cardDescription}
-                    Journal: ${oneRead.journalEntry}
+                    <p><strong>Date:</strong> ${oneRead.date.substring(0, 10)} at ${oneRead.date.substring(11, 16)}</p>
+                    <p><strong>Type Of Reading:</strong> ${oneRead.typeOfReading.substring(0, oneRead.typeOfReading.length - 7)} card reading</p>
+                    <p><strong>Reading results:</strong></p>
+                    <p>${cardDescription}</p>
+                    <p><strong>Journal:</strong> ${oneRead.journalEntry}</p>
                     <hr>
                     </div>`;
     document.getElementById("showEntry").innerHTML += result;
-
-}
+  }
 }
 
 async function loadCardsDescription(cardsArr) {
@@ -94,7 +89,6 @@ async function loadCardsDescription(cardsArr) {
     let oneDescription = await fetch("api/readings/cardId?id=" + cardsArr[i]);
     oneDescription = await oneDescription.json();
     results += `${oneDescription}+<br>`;
-    // console.log("Results from loadCardsDescription()"+results)
   }
   return results
 }

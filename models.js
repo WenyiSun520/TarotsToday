@@ -4,24 +4,14 @@ let models = {}
 
 main()
 async function main(){
+  // Connect to mongodb
   console.log('connecting to mongodb')
 
   await mongoose.connect('mongodb+srv://WenyiEmiriGisele:WenyiEmiriGisele@tarottoday.vrffuyq.mongodb.net/data?retryWrites=true&w=majority')
 
   console.log("successfully connected to mongodb!")
 
-  // WE MIGHT NOT NEED USERSCHEMA IF WE USE req.sessions.account.username
-  // const userSchema = new mongoose.Schema({
-  //   username: String,
-  //   // drawnCard: [
-  //   //   {
-  //   //     card_id: Number,
-  //   //     created_date: Date,
-  //   //   },
-  //   // ],
-  // });
-  // models.Users = mongoose.model("Users", userSchema);
-
+  // Tarot cards
   const tarotCardSchema = new mongoose.Schema({
     name: String,
     id: Number,
@@ -33,12 +23,7 @@ async function main(){
   })
   models.TarotCard = mongoose.model('TarotCard', tarotCardSchema)
 
-  // const journalEntrySchema = new mongoose.Schema({
-  //   username: String, // username of the user who pulled the reading
-  //   tarot_reading: {type: mongoose.Schema.Types.ObjectId, ref: "Reading"}
-  // })
-  // models.JournalEntry = mongoose.model("JournalEntry", journalEntrySchema);
-
+  // Users - includes readings
   const userSchema = new mongoose.Schema({
       username: String,
       readings: [{

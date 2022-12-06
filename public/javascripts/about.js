@@ -1,4 +1,9 @@
 async function init() {
+    await returnCards();
+    await loadIdentity();
+}
+
+async function returnCards() {
     let htmlReturn = `<div class="row">`
     try {
         let allCardsJSON = await (await fetch(`../api/readings/all`)).json()
@@ -18,5 +23,5 @@ async function init() {
         document.getElementById("about-section").innerHTML = htmlReturn
     } catch (error) {
         document.getElementById("about-section").innerHTML = `${error}`
-    }
+    } 
 }

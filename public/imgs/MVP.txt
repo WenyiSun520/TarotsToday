@@ -1,0 +1,15 @@
+https://tarotstoday.azurewebsites.net
+
+Our accomplishments thus far: 
+- Implemented an API interface to control which endpoints are used to access certain information
+- Implemented handlers to get a tarot reading, post a tarot reading alongside a journal entry, see said readings, and see all cards
+- Created database models for the users and their entries (readings, date, journal entry)
+- Created a frontend for our website
+- Set up authentication to allow user-specific actions
+- Deployed to Azure
+
+Before the final project presentation, we plan to:
+- Clean up our code
+- Clean up the nav bar
+- Look into the details of only allowing one reading and entry per day
+- Work on the UI of our website (example: buttons looking nicer)
