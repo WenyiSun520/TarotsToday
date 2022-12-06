@@ -2,7 +2,7 @@ async function init() {
   document.getElementById("journalEntry").value = "";
   document.getElementById("showfeedback").value = "";
   await loadIdentity();
-  await loadEntry();
+  await loadMostRecentEntry();
 }
 
 let cardsId = []; // create a global array to save fetched cards ids
@@ -59,7 +59,7 @@ async function postEntryAndReading(journal) {
     .insertBefore(inputFeedback, showEntry);
 }
 
-async function loadEntry() {
+async function loadMostRecentEntry() {
     document.getElementById("showEntry").innerHTML="";
   //get username to find user entries in uesers collection
   let userIdentity = await fetchJSON(`api/users/myIdentity`);
