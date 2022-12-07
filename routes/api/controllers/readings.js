@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
       let userInfo = await req.models.Users.findOne({
         username: currentUsername,
       });
+
       if (userInfo == null) {
         // if this is the first-time user, create a schema for the user and save reading
         let newUser = new req.models.Users({
@@ -40,14 +41,26 @@ router.post("/", async (req, res) => {
         });
         await newUser.save();
       } else {
-        // Existing user
-        userInfo.readings.push({
-          typeOfReading: req.body.typeOfReading,
-          cards: req.body.card_id,
-          journalEntry: req.body.journal,
-          date: Date().toLocaleString("en-US"),
-        });
-        await userInfo.save();
+        // See if user has already saved an entry for that day
+        // Get most recent reading date
+        let recentDate = userInfo.readings[userInfo.readings.length - 1].date.toString().substring(0, 10)
+        let currentDate = Date().toLocaleString("en-US").substring(0, 10)
+
+        if (recentDate == currentDate) {
+          // If yes, show alert
+          // alert("Sorry, you have already created an entry for today, please come back again tomorrow!")
+          res.send({status: "failed", error: "Already entered an entry for today! Please come back again tomorrow!!"})
+          return;
+        } else {
+          // Existing user with no entry today
+          userInfo.readings.push({
+            typeOfReading: req.body.typeOfReading,
+            cards: req.body.card_id,
+            journalEntry: req.body.journal,
+            date: Date().toLocaleString("en-US"),
+          });
+          await userInfo.save();
+        }
       }
       res.send({ status: "Success" });
     } else {
@@ -197,7 +210,7 @@ async function threeCardReading(req) {
         </div>
       `;
     });
-    
+
     // create the description display html
     returnHTML.descriptionDisplay = await createDescriptionDisplay(
       cards,
