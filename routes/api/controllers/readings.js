@@ -1,7 +1,8 @@
 import express from "express";
 var router = express.Router();
 
-// accepts a query parameter "numOfCards"
+// Accepts a query parameter "numOfCards"
+// Returns the html for one reading
 router.get("/", async (req, res) => {
   let returnHTML;
 
@@ -14,9 +15,13 @@ router.get("/", async (req, res) => {
   res.send(returnHTML);
 });
 
+// Request has a session which has the account that is logged in
+// Request has models for users
+// Posts (or doesn't post) the new reading and journal entry depending on status
 router.post("/", async (req, res) => {
-  // repsond with the array of the json of the cards
+  // respond with the array of the json of the cards
   try {
+    // Check if user is authenticated
     if (req.session.isAuthenticated) {
       // Get username and info
       let currentUsername = req.session.account.username;
@@ -28,6 +33,7 @@ router.post("/", async (req, res) => {
         // if this is the first-time user, create a schema for the user and save reading
         let newUser = new req.models.Users({
           username: currentUsername,
+          // Add their first reading (current one)
           readings: [
             {
               typeOfReading: req.body.typeOfReading,
@@ -39,6 +45,7 @@ router.post("/", async (req, res) => {
             },
           ],
         });
+        // Save to database
         await newUser.save();
       } else {
         // See if user has already saved an entry for that day
@@ -48,8 +55,7 @@ router.post("/", async (req, res) => {
 
         if (recentDate == currentDate) {
           // If yes, show alert
-          // alert("Sorry, you have already created an entry for today, please come back again tomorrow!")
-          res.send({status: "failed", error: "Already entered an entry for today! Please come back again tomorrow!!"})
+          res.send({ status: "failed", error: "Already entered an entry for today! Please come back again tomorrow!!" })
           return;
         } else {
           // Existing user with no entry today
@@ -74,6 +80,8 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Takes in username
+// Returns json of all readings for user
 router.get("/user", async (req, res) => {
   let username = req.query.username;
   try {
@@ -89,6 +97,8 @@ router.get("/user", async (req, res) => {
   }
 });
 
+// Takes in card id number
+// returns information about the card with the id (name and description)
 router.get("/cardId", async (req, res) => {
   let id = req.query.id;
 
@@ -108,8 +118,8 @@ router.get("/cardId", async (req, res) => {
   }
 });
 
+// Return all cards in database in json format
 router.get("/all", async (req, res) => {
-  // return all cards in json format
   try {
     // pull all cards
     await req.models.TarotCard.find({}).then((doc) => {
@@ -123,9 +133,10 @@ router.get("/all", async (req, res) => {
 
 export default router;
 
+// Returns html for a single one card reading 
 async function oneCardReading(req) {
   try {
-    // we need meanings for the different cards in relation to where they are in the
+    // add meanings for the different cards in relation to where they are in the
     // spread (more relevant in the 3 card readings)
     let meanings = ["This card represents you"];
 
@@ -166,8 +177,10 @@ async function oneCardReading(req) {
   }
 }
 
+// Returns html for a single three card reading 
 async function threeCardReading(req) {
   try {
+    // add meanings for the different cards in relation to where they are in the spread 
     let meanings = [
       "This card represents the past",
       "This card represents the present",
@@ -225,7 +238,10 @@ async function threeCardReading(req) {
   }
 }
 
+// Takes in array of cards and array of meanings
+// Returns the html for the description of the cards 
 async function createDescriptionDisplay(cards, meanings) {
+  // Create template for displaying description
   let descriptionDisplay = `
     <div class="row" id="descriptionHeader" >
       <div class="col-1">Num</div>
@@ -234,6 +250,7 @@ async function createDescriptionDisplay(cards, meanings) {
       <div class="col-5">Meaning</div>
     </div>`;
 
+    // Create the html to display for each card in card array
   for (let i = 0; i < cards.length; i++) {
     descriptionDisplay += `
       <div class="row descrRow">
