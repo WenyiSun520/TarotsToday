@@ -8,6 +8,7 @@ main {
 
 a {
   color: #005779;
+  text-decoration: none;
 }
 
 p {
@@ -58,6 +59,22 @@ p {
   /* W3C compliant browsers */
 }
 
+/* CSS for userInfo.html */
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#filter-bar {
+  position: fixed;
+  right: 0;
+  background-color: #b59d6d;
+  width: 100px;
+  height: 600px;
+  border-radius: 15px;
+  ;
+}
+
 #results {
   display: flex;
   flex-wrap: wrap;
@@ -65,69 +82,87 @@ p {
   justify-content: flex-start;
 }
 
-.entry-bg {
-  margin: 5px;
+.entry-container {
+  /* background-color: transparent; */
+  width: 300px;
+  height: 450px;
+  perspective: 1000px;
+  margin: 40px;
+  /* margin-bottom: 40px; */
+}
+
+.entry-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.entry-pic {
   border-radius: 15px;
-  background-image: url(../imgs/entry-bg.webp);
-  background-size: 300px 515px;
+  background-size: 300px 450px;
   background-repeat: no-repeat;
   width: 300px;
   height: 515px;
 }
 
+.is-flipped {
+  transform: rotateY(180deg);
+}
 
-.entry-result {
-  opacity: 0;
+
+.entry-front, .entry-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.entry-front {
+  background-color: none;
+  color: black;
   border-radius: 15px;
-  font-size: 16px;
-  margin: 2px;
-  padding: 15px;
   width: 300px;
-  height: 515px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: flex-start;
+  height: 450px;
 }
 
-.entry-result:hover {
-  opacity: 0.8;
-  background-color: white;
+.entry-back {
+  border-radius: 15px;
+  background-color: #b59d6d;
+  border: 2px solid black;
+  transform: rotateY(180deg);
+  padding: 10px;
+  width: 300px;
+  height: 450px;
 }
 
-
-.entry-result p {
+.entry-back p {
   display: block;
 }
 
-.entry-result {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-
-}
-
-
-.entry-result .one-result {
+.entry-back .one-result {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 1px;
   border: 1px solid;
 }
 
-.entry-result .one-result .title {
+.entry-back .one-result .title {
   text-align: center;
 }
 
-.one-result {
-  margin-left: .5rem;
-}
-
-.entry-result .journal-p {
+.entry-back .journal-p {
   display: block;
   margin-top: 10px;
 }
 
+
+
+/* CSS for about-tarot.html */
 .about-card {
   margin-bottom: 1rem;
 }
