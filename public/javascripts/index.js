@@ -35,9 +35,7 @@ async function postEntryAndReading(journal) {
     typeOfReading = "singleReading";
   } else if (cardsId.length == 3) {
     typeOfReading = "tripleReading";
-  } else if (cardsId.length == 5) {
-    typeOfReading = "fiveCardsReading";
-  }
+  } 
   let responseJson = await fetchJSON(`api/readings`, {
     method: "POST",
     body: {
@@ -50,7 +48,7 @@ async function postEntryAndReading(journal) {
   if (responseJson.status == "Success") {
     inputFeedback.textContent = "Success!";
   } else {
-    inputFeedback.textContent = "Fail!";
+    inputFeedback.textContent = "Error: " + responseJson.error;
   }
   document.getElementById("journal-input")
     .insertBefore(inputFeedback, showEntry);

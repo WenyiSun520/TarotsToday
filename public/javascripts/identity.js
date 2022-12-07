@@ -39,6 +39,9 @@ async function loadIdentity() {
       if (document.getElementById("journalEntry")) {
         document.getElementById("journalEntry").classList.add("d-none");
       }
+      if (document.getElementById("journalDescription")) {
+        document.getElementById("journalDescription").classList.add("d-none");
+      }
     }
   } catch (error) {
     myIdentity = undefined;
