@@ -3,6 +3,8 @@ async function init() {
     await loadIdentity();
 }
 
+// Runs through all the tarot cards in our database
+// Returns html for the tarot card about page
 async function returnCards() {
     let htmlReturn = `<div class="row">`
     try {
