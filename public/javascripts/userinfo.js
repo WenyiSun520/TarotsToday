@@ -43,6 +43,7 @@ async function loadEntry() {
   }
 }
 
+// returns HTML descriptions off all the cards in the array it receives
 async function loadCardsDescription(cardsArr) {
   let results = "";
   for (let i = 0; i < cardsArr.length; i++) {
@@ -53,6 +54,7 @@ async function loadCardsDescription(cardsArr) {
   return results;
 }
 
+// flips the card on the DOM
 function flipEntry(id) {
   let card = document.getElementById(id);
   card.classList.toggle("is-flipped");
