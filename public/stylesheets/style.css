@@ -14,7 +14,7 @@ a {
 p {
   margin-bottom: 0rem;
 }
-
+/* CSS for Navbar */
 .navbar {
   padding: 1rem;
   font-weight: 600;
@@ -41,7 +41,7 @@ p {
 #identity-text {
   margin-right: 1.5rem;
 }
-
+/* CSS for index.html Tarot card displaying*/
 .oneCardDisplayImg {
   max-height: 20rem;
 }
