@@ -1,5 +1,6 @@
 let myIdentity = undefined;
 
+// Changes the DOM based on if someone is logged in or not
 async function loadIdentity() {
   let identityText = document.getElementById("identity-text");
 
