@@ -6,6 +6,9 @@ async function init() {
 }
 
 let cardsId = []; // create a global array to save fetched cards ids
+
+// Accepts a number to represent how many cards it needs to show
+// Displays the HTML of the card reading
 async function loadReading(numOfCards) {
   let htmlJSON = await fetchJSON("api/readings?numOfCards=" + numOfCards);
   console.log("loadReading, htmlJSON: " + htmlJSON.cardDisplay);
@@ -18,6 +21,7 @@ async function loadReading(numOfCards) {
     htmlJSON.descriptionDisplay;
 }
 
+// Preps a journal entry to get saved
 async function saveNewEntry() {
   let journal = document.getElementById("journalEntry").value;
   if (cardsId.length == 0) {
@@ -28,6 +32,7 @@ async function saveNewEntry() {
   }
 }
 
+// Sends a journal entry to the database
 async function postEntryAndReading(journal) {
   console.log("POSToneCards: " + journal);
   let typeOfReading = "";
@@ -54,9 +59,11 @@ async function postEntryAndReading(journal) {
     .insertBefore(inputFeedback, showEntry);
 }
 
+// Finds a user's most recent entry from the database
+// Diplays the most recent entry to the DOM
 async function loadMostRecentEntry() {
-    document.getElementById("showEntry").innerHTML="";
-  //get username to find user entries in uesers collection
+  document.getElementById("showEntry").innerHTML="";
+  //get username to find user entries in users collection
   let userIdentity = await fetchJSON(`api/users/myIdentity`);
 
   if (userIdentity.status == "loggedin") {
@@ -81,6 +88,8 @@ async function loadMostRecentEntry() {
   }
 }
 
+// Receives an array of card IDS
+// Returns HTML for the card descriptions
 async function loadCardsDescription(cardsArr) {
   let results = ""
   for (let i = 0; i < cardsArr.length; i++) {

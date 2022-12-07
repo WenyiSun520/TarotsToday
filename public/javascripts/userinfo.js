@@ -1,5 +1,6 @@
 loadEntry();
 
+// Returns HTML for all the user's past entried
 async function loadEntry() {
   document.getElementById("results").innerHTML = "";
   // get username to find user entries in users collection
@@ -14,16 +15,6 @@ async function loadEntry() {
 
     for (let i = 0; i < responseJson.length; i++) {
       let oneRead = responseJson[i];
-
-      // let result = `<div class="entry-container">
-      //               <div id="${i}" class="entry-inner" onclick="flipEntry(${i})">
-      //               <div class="entry-front">
-      //               <img class="entry-pic" src='../imgs/entry-bg.webp' alt="Entry background picture" />
-      //               </div>
-      //               <div class="entry-back">
-      //               Date: ${oneRead.date}
-      //               <p>Type Of Reading: ${oneRead.typeOfReading}</p>
-      //               <p>Cards:</p>
       let cleanDate = oneRead.date.substring(0, 10);
       let cleanType = oneRead.typeOfReading.substring(
         0,
@@ -52,6 +43,7 @@ async function loadEntry() {
   }
 }
 
+// returns HTML descriptions off all the cards in the array it receives
 async function loadCardsDescription(cardsArr) {
   let results = "";
   for (let i = 0; i < cardsArr.length; i++) {
@@ -62,6 +54,7 @@ async function loadCardsDescription(cardsArr) {
   return results;
 }
 
+// flips the card on the DOM
 function flipEntry(id) {
   let card = document.getElementById(id);
   card.classList.toggle("is-flipped");
