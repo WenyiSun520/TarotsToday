@@ -50,12 +50,18 @@ router.post("/", async (req, res) => {
       } else {
         // See if user has already saved an entry for that day
         // Get most recent reading date
-        let recentDate = userInfo.readings[userInfo.readings.length - 1].date.toString().substring(0, 10)
-        let currentDate = Date().toLocaleString("en-US").substring(0, 10)
+        let recentDate = userInfo.readings[userInfo.readings.length - 1].date
+          .toString()
+          .substring(0, 10);
+        let currentDate = Date().toLocaleString("en-US").substring(0, 10);
 
         if (recentDate == currentDate) {
           // If yes, show alert
-          res.send({ status: "failed", error: "Already entered an entry for today! Please come back again tomorrow!!" })
+          res.send({
+            status: "failed",
+            error:
+              "Already entered an entry for today! Please come back again tomorrow!!",
+          });
           return;
         } else {
           // Existing user with no entry today
@@ -123,17 +129,48 @@ router.get("/all", async (req, res) => {
   try {
     // pull all cards
     await req.models.TarotCard.find({}).then((doc) => {
-      res.json(doc)
-    })
+      res.json(doc);
+    });
   } catch (error) {
     console.log("Error connecting to db", error);
     res.status(500).json({ status: "error", error: error });
   }
 });
 
+router.delete("/entryId", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      let id = req.query.id;
+      let username = req.session.account.username;
+      let userData = await req.models.Users.findOne({
+        username: username,
+      });
+
+      let userEntries = userData.readings;
+      console.log(userEntries)
+      // await userEntries.deleteOne({ _id: id });
+      for (let i = 0; i < userEntries.length; i++) {
+        if(userEntries[i]._id == id){
+          userEntries.splice(i,1);
+          break;
+        }
+      }
+      console.log(userEntries);
+      await userData.save();
+   
+      res.json({ status: "success", entreis: userEntries });
+    } else {
+      res.status(401).json({ status: "error", error: "not logged in" });
+    }
+  } catch (error) {
+    console.log("Error deleteing your entry: ", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+
 export default router;
 
-// Returns html for a single one card reading 
+// Returns html for a single one card reading
 async function oneCardReading(req) {
   try {
     // add meanings for the different cards in relation to where they are in the
@@ -156,11 +193,12 @@ async function oneCardReading(req) {
     let random_boolean = Math.random();
     returnHTML.cardDisplay = `
       <div id="cardsJSON" class="d-none" cardsJSON="${JSON.stringify([
-      oneCard,
-    ])}"></div>
+        oneCard,
+      ])}"></div>
       <div class="col-12 text-center">
-        <img class="oneCardDisplayImg ${random_boolean < 0.5 ? "rotate-img" : ""
-      }" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
+        <img class="oneCardDisplayImg ${
+          random_boolean < 0.5 ? "rotate-img" : ""
+        }" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />
         <p>1</p>
       </div>
     `;
@@ -177,10 +215,10 @@ async function oneCardReading(req) {
   }
 }
 
-// Returns html for a single three card reading 
+// Returns html for a single three card reading
 async function threeCardReading(req) {
   try {
-    // add meanings for the different cards in relation to where they are in the spread 
+    // add meanings for the different cards in relation to where they are in the spread
     let meanings = [
       "This card represents the past",
       "This card represents the present",
@@ -217,8 +255,9 @@ async function threeCardReading(req) {
       let random_boolean = Math.random();
       returnHTML.cardDisplay += `
         <div class="col-4 text-center">
-          <img class="oneCardDisplayImg ${random_boolean < 0.5 ? "rotate-img" : ""
-        }" src="imgs/cards/${card.img}" alt="${card.name}" />
+          <img class="oneCardDisplayImg ${
+            random_boolean < 0.5 ? "rotate-img" : ""
+          }" src="imgs/cards/${card.img}" alt="${card.name}" />
           <p>${index + 1}</p>
         </div>
       `;
@@ -239,7 +278,7 @@ async function threeCardReading(req) {
 }
 
 // Takes in array of cards and array of meanings
-// Returns the html for the description of the cards 
+// Returns the html for the description of the cards
 async function createDescriptionDisplay(cards, meanings) {
   // Create template for displaying description
   let descriptionDisplay = `
@@ -250,7 +289,7 @@ async function createDescriptionDisplay(cards, meanings) {
       <div class="col-5">Meaning</div>
     </div>`;
 
-    // Create the html to display for each card in card array
+  // Create the html to display for each card in card array
   for (let i = 0; i < cards.length; i++) {
     descriptionDisplay += `
       <div class="row descrRow">

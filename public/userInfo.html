@@ -12,7 +12,7 @@
     <script src="javascripts/identity.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <!--Site name with logo-->
@@ -31,10 +31,25 @@
     </header>
     <main>
         <div id="userInfoName"></div>
+        <div>
+            <input type="checkbox" id="is-all-flip" name="is-all-flip" onchange="flipAllEntries()">
+            <label for="is-all-flip">Filp All Entreis</label>
+        </div>
+        <label for="time-sorting">Sort:</label>
+        <select name="time-sorting" id="time-sorting" onchange="init()">
+            <option value="oldest">From the Oldest</option>
+            <option value="most-recent">From the Most Recent To Old</option>
+        </select>
+        <div class="filter-div" onchange="init()">
+            <input type="radio" id="all-reading" name="reading-filter"  value="all-reading" checked>
+            <label for="all-reading">Showing All Readings</label>
+            <input type="radio" id="single-reading" name="reading-filter" value="singleReading">
+            <label for="single-reading">Only Show Single-card Readings</label>
+            <input type="radio" id="triple-reading" name="reading-filter" value="tripleReading">
+            <label for="triple-reading">Only Show Triple-card Readings</label>
+        </div>
+
         <div id="results"></div>
-
-        
-
     </main>
     <script type="text/javascript" src="javascripts/userinfo.js"></script>
 </body>

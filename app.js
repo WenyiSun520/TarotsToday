@@ -11,8 +11,8 @@ const appSettings = {
     clientSecret: "bvx8Q~ymGN4fwkdaUNcr2zsHlbZ_Q8WlRLZOHa0I",
   },
   authRoutes: {
-    redirect: "https://info441-au22-tarotstoday.azurewebsites.net/redirect",
-    //redirect: "http://localhost:3000/redirect",
+    // redirect: "https://info441-au22-tarotstoday.azurewebsites.net/redirect",
+    redirect: "http://localhost:3000/redirect",
     error: "/error",
     unauthorized: "/unauthorized",
   },
