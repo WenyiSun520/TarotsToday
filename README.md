@@ -3,6 +3,9 @@
 
 <p>Our project will be a daily Tarot Card reader that allows users to see a card every day as well as add journal entries.</p>
 
+<h2>URL to our site</h2>
+<p><a href="https://info441-au22-tarotstoday.azurewebsites.net/">https://info441-au22-tarotstoday.azurewebsites.net/</a></p>
+
 <h2>Project Description</h2>
 <p>Our overall target audience would be anybody. Ideally, our project ends up being something that anyone can access and play with easily. More specifically, we would be targetting people that are interested in Tarot. These people would be our main users - people that are invested in seeing how Tarot card readings can help them sort out patterns in different parts of their lives. A reach audience would be people who are interested in astrology, as they tend to gravitate towards Tarot as well.</p>
 
