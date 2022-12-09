@@ -201,11 +201,11 @@ async function threeCardReading(req) {
     for (let i = 1; i < 4; i++) {
       let randNum = Math.floor(Math.random() * 77);
       let oneCard = await req.models.TarotCard.findOne({ id: randNum });
-      returnHTML.cardsId.push(randNum);
-
+      
       // if it's not already in the array add it to the array
-      if (!cards.includes(oneCard)) {
+      if (!returnHTML.cardsId.includes(randNum)) {
         cards.push(oneCard);
+        returnHTML.cardsId.push(randNum);
       } else {
         //otherwise go another round
         i--;
