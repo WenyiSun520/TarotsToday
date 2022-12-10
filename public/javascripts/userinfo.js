@@ -38,7 +38,6 @@ function filterEntry(responseJson) {
   let selectFilter = "";
   for (let i of readingTypes) {
     if (i.checked) {
-      console.log("i.checked is: " + i.value);
       selectFilter = i.value;
     }
   }
@@ -63,15 +62,7 @@ async function loadEntry(responseJson) {
       0,
       oneRead.typeOfReading.length - 7
     );
-
-    let result = ` <div  class="entry-container"> 
-                      <div id="${i}" class="entry-inner" onclick="flipEntry(${i})">
-                      <div class="entry-front">
-                       <img class="entry-pic" src='../imgs/entry-bg.webp' alt="Entry background picture" />
-                      </div>
-                    <div class="entry-back">
-
-                    <p><strong>Date:</strong> ${cleanDate} at ${oneRead.date.substring(
+    let post = `<p><strong>Date:</strong> ${cleanDate} at ${oneRead.date.substring(
       11,
       16
     )}</p>
@@ -79,11 +70,19 @@ async function loadEntry(responseJson) {
                     <p><strong>Cards:</strong></p>
                     ${await loadCardsDescription(oneRead.cards)}
                     <p class="journal-p"><strong>Journal:</strong> 
-                    ${oneRead.journalEntry}</p>
+                    ${oneRead.journalEntry}</p>`;
+
+    let result = ` <div  class="entry-container"> 
+                      <div id="${i}" class="entry-inner" onclick="flipEntry(${i})">
+                      <div class="entry-front">
+                       <img class="entry-pic" src='../imgs/entry-bg.webp' alt="Entry background picture" />
+                      </div>
+                    <div class="entry-back">
+                    ${post}
+                    <button  onclick="openShareWindow('${i}', '${oneRead}')">Share this entry</button>
+                    <button class="delete-btn" onclick="deleteEntry('${oneRead._id}')">&#10006;</button>
                     </div>
-                   
                     </div>
-                    <button onclick="deleteEntry('${oneRead._id}')">&#10006;</button>
                     </div>
                    `;
     document.getElementById("results").innerHTML += result;
@@ -119,16 +118,55 @@ function flipEntry(id) {
   card.classList.toggle("is-flipped");
 }
 
-async function deleteEntry(id){
+async function deleteEntry(id) {
   console.log(id);
   let response = await fetch("api/readings/entryId?id=" + id, {
-    method: "DELETE"
+    method: "DELETE",
   });
   let responseJAon = await response.json();
-    console.log(responseJAon.status);
+  console.log(responseJAon.status);
   if (responseJAon.status == "success") {
     init();
   } else {
     alert(responseJAon.error);
+  }
+}
+function openShareWindow(id, entry) {
+  // document.getElementById(id).classList.remove("is-flipped");
+  document.querySelector(".share-entry").style.display = "flex";
+
+  // let title = document.querySelector(".title-input").value;
+  // let cotent = document.querySelector(".publicpost-content").value;
+  // entry.title = title;
+  // entry.content = cotent;
+  // return entry;
+  
+}
+document
+  .querySelector(".post-public-btn")
+  .addEventListener("click", shareEntry(entry));
+async function shareEntry(entry) {
+  console.log("I'm in shareEntry");
+  let userIdentity = await fetchJSON(`api/users/myIdentity`);
+  let username = userIdentity.userInfo.username;
+  console.log(username);
+  let obj = {
+    name: username,
+    typeOfReading: entry.typeOfReading,
+    cards: entry.cards,
+    journalEntry: entry.journalEntry,
+    date: entry.date,
+  };
+  let response = await fetch("api/forum", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: JSON.stringify(obj),
+  });
+  let responseJson = await response.json();
+  console.log(responseJson);
+  if (responseJson.status == "success") {
+    init();
+  } else {
+    alert(responseJson.error);
   }
 }

@@ -1,21 +1,20 @@
 let myIdentity = undefined;
-
+loadIdentity(); 
 // Changes the DOM based on if someone is logged in or not
 async function loadIdentity() {
-  let identityText = document.getElementById("identity-text");
+  let identityAllText = document.querySelectorAll(".identity-text");
 
   try {
     let identityInfo = await fetchJSON(`api/users/myIdentity`);
     if (identityInfo.status == "loggedin") {
       // If logged in, display save button and log out button, don't display login button
       myIdentity = identityInfo.userInfo.username;
-      identityText.innerHTML = `
+      identityAllText.forEach((idenidentityText)=>idenidentityText.innerHTML = `
             <a href="/userInfo.html?user=${encodeURIComponent(
               identityInfo.userInfo.username
             )}">${escapeHTML(identityInfo.userInfo.name)} (${escapeHTML(
         identityInfo.userInfo.username
-      )})</a>
-            `;
+      )})</a>`);
       if (document.getElementById("saveButton")) {
         document.getElementById("saveButton").classList.remove("d-none");
       }

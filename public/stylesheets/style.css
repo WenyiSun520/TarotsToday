@@ -14,6 +14,7 @@ a {
 p {
   margin-bottom: 0rem;
 }
+
 /* CSS for Navbar */
 .navbar {
   padding: 1rem;
@@ -38,9 +39,10 @@ p {
   width: auto;
 }
 
-#identity-text {
+.identity-text {
   margin-right: 1.5rem;
 }
+
 /* CSS for index.html Tarot card displaying*/
 .oneCardDisplayImg {
   max-height: 20rem;
@@ -160,7 +162,12 @@ p {
   margin-top: 10px;
 }
 
-
+.entry-back .delete-btn {
+  border-radius: 5px;
+  position: absolute;
+  top: 93%;
+  right: 5%;
+}
 
 /* CSS for about-tarot.html */
 .about-card {
@@ -205,3 +212,32 @@ p {
   margin-bottom: 2rem;
   border-width: .05rem;
 }
+
+
+
+/* CSS for forum.html */
+.post-preview {
+  display: none;
+}
+
+
+.share-entry {
+  display: none;
+  position: fixed;
+  background-color: #b59d6d;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* .share-window {
+  display: flex;
+
+
+} */

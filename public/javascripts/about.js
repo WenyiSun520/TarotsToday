@@ -19,9 +19,7 @@ async function returnCards() {
         <br>
         `
         })
-
         htmlReturn += "</div>"
-
         document.getElementById("about-section").innerHTML = htmlReturn
     } catch (error) {
         document.getElementById("about-section").innerHTML = `${error}`
