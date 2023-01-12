@@ -272,11 +272,26 @@ p {
 }
 
 
-.display{
-  float:right;
+.display {
+  float: right;
 }
 
 
-.selectedBtn{
+.selectedBtn {
   background-color: #b59d6d;
+}
+
+.add-comments, .all-comments {
+  display: none;
+}
+
+.show-add-comments-window {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.show-add-comments-window button {
+  width: fit-content;
+  margin-top: 10px;
 }

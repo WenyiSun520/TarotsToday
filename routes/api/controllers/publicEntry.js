@@ -9,6 +9,19 @@ router.get("/", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
+router.get("/getComment", async (req, res) => {
+  try {
+      let id= req.query.id;
+      console.log("post id: "+id)
+      let findAllComments = await req.models.Comment.find({ post: id });
+      console.log("findallcomments: ", findAllComments)
+      res.json({ status: "success", comments: findAllComments});
+  } catch (error) {
+    console.log("Error finding comment from db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+
 
 router.get("/user/:username?/post/:postId?", async (req, res) => {
   try {
@@ -141,5 +154,29 @@ router.post("/dislikePost", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
+
+router.post("/postComment", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+       let newComment = new req.models.Comment({
+         username: req.session.account.username,
+         comment: req.body.comment,
+         post: req.body.id,
+         created_date: req.body.date
+       });
+      await newComment.save();
+      res.json({ status: "success" });
+    } else {
+      res.json({
+        status: "fail",
+        error: "Please login and leave a comment to a post",
+      });
+    }
+  } catch (error) {
+    console.log("Error posting comment from db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+
 
 export default router;

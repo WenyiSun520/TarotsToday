@@ -49,6 +49,14 @@ async function main(){
   });
   models.PublicEntry = mongoose.model("PublicEntry", publicEntrySchema);
 
+  const commentSchema = new mongoose.Schema({
+    username: String,
+    comment: String,
+    post: { type: mongoose.Schema.Types.ObjectId, ref: "PublicEntry" },
+    created_date: Date,
+  });
+  models.Comment = mongoose.model("Comment", commentSchema);
+
   console.log("mongoose models created");
 }
 
