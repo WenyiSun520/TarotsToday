@@ -4,9 +4,14 @@
 <p>Our project will be a daily Tarot Card reader that allows users to see a card every day as well as add journal entries.</p>
 
 <h2>Update</h2>
-<p>This below URL link is expired due to logging out of UW orgnization in Microsoft Azure, please use Localhost while testing this web application after npm start command on terminal</p>
 
-<p><a href="https://localhost:3000">https://localhost:3000</a></p>
+**1.14.2023 By *WenyiSun***
+- Add Tarot Forum section with functions for adding comments for each posts
+- Add shareEntry function so users can public their post on Tarot Forum
+
+**1.13.2023 By *WenyiSun***
+- This below URL link is expired due to logging out of UW orgnization in Microsoft Azure, please use Localhost while testing this web application after npm start command on terminal
+- <p><a href="https://localhost:3000">https://localhost:3000</a></p>
 
 ~~<h2>URL to our site</h2>~~
 ~~<p><a href="https://info441-au22-tarotstoday.azurewebsites.net/">https://info441-au22-tarotstoday.azurewebsites.net/</a></p>~~
