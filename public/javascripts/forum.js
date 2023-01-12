@@ -15,7 +15,8 @@ async function getAllPublicPost() {
                          <div class="public-post-preview">${await previewPublicPost(
                            post
                          )}<div>
-                         <div class="display-triangle">&#9660;</div>
+
+                         <div class="display"><button onclick="addLike()">&#128077;</button> <button>&#128078</button>  <button>Add Comment</button> <button>&#9660;</button></div>
           </div>`;
     document.querySelector(".main-post").innerHTML += result;
   }
@@ -40,3 +41,5 @@ async function previewPublicPost(post) {
   console.log("previewPublicpost: "+ result)
   return result;
 }
+
+
