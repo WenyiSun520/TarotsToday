@@ -17,19 +17,19 @@ router.get("/user/:username?/post/:postId?", async (req, res) => {
     // console.log("username: " + username + " id: " + id);
     let findUser = await req.models.Users.findOne({ username: username });
     // console.log("user's posts: " + findUser);
-  
-    let userReadings = findUser.readings.find((ele)=>ele._id == id)
+
+    let userReadings = findUser.readings.find((ele) => ele._id == id);
     // console.log("user's public post: " + userReadings);
     if (userReadings == undefined) {
       res.status(401).json({ status: "error", error: "can't find the post" });
     } else {
-      let imgTags = await readingPreview(req, userReadings.cards)
+      let imgTags = await readingPreview(req, userReadings.cards);
       let postObj = {
         cards: imgTags,
         journal: userReadings.journalEntry,
-        date: userReadings.date
+        date: userReadings.date,
       };
-  
+
       res.json({ status: "success", postObj: postObj });
     }
   } catch (error) {
@@ -63,6 +63,8 @@ router.post("/", async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         content: req.body.postId,
+        like: [],
+        dislike: [],
       });
       console.log("test new post", newPost);
       // Save to database
@@ -75,6 +77,67 @@ router.post("/", async (req, res) => {
     }
   } catch (error) {
     console.log("Error connecting to db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+router.post("/likePost", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      let postId = req.query.id;
+      let post = await req.models.PublicEntry.findById(postId);
+      if (post.like.includes(req.session.username)) {
+        let index = post.like.indexOf(req.session.username);
+        post.like.splice(index, 1);
+      } else {
+        post.like.push(req.session.username);
+      }
+      //if the user previsouly dislike the post, and change mind to like, 
+      // remove username from dislike array
+      if(post.dislike.includes(req.session.username)){
+        let index = post.dislike.indexOf(req.session.username);
+        post.dislike.splice(index, 1);
+      }
+      await post.save();
+      res.json({ status: "success" });
+    } else {
+      res.json({
+        status: "fail",
+        error: "Please login and like or dislike a post",
+      });
+    }
+  } catch (error) {
+    console.log("Error updating likes from db", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+
+router.post("/dislikePost", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      let postId = req.query.id;
+      let post = await req.models.PublicEntry.findById(postId);
+      if (post.dislike.includes(req.session.username)) {
+        let index = post.dislike.indexOf(req.session.username);
+        post.dislike.splice(index, 1);
+      } else {
+        post.dislike.push(req.session.username);
+      }
+      //if the user previsouly like the post, and change mind to dislike,
+      // remove username from like array
+      if (post.like.includes(req.session.username)) {
+        let index = post.like.indexOf(req.session.username);
+        post.like.splice(index, 1);
+      }
+      await post.save();
+      res.json({ status: "success" });
+    } else {
+      res.json({
+        status: "fail",
+        error: "Please login and like or dislike a post",
+      });
+    }
+  } catch (error) {
+    console.log("Error updating likes from db", error);
     res.status(500).json({ status: "error", error: error });
   }
 });

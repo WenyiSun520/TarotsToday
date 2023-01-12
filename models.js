@@ -44,6 +44,8 @@ async function main(){
     title: String,
     description: String,
     content: { type: mongoose.Schema.Types.ObjectId, ref: "readings" },
+    like: [String],
+    dislike: [String]
   });
   models.PublicEntry = mongoose.model("PublicEntry", publicEntrySchema);
 

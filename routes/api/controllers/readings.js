@@ -136,7 +136,7 @@ router.get("/all", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
-
+// delete entry 
 router.delete("/entryId", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
@@ -167,6 +167,7 @@ router.delete("/entryId", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
+// previewPosts when user want to pupblic one of their post
 router.get("/previewPosts", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
