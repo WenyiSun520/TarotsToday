@@ -12,9 +12,9 @@ router.get("/", async (req, res) => {
 router.get("/getComment", async (req, res) => {
   try {
       let id= req.query.id;
-      console.log("post id: "+id)
+      // console.log("post id: "+id)
       let findAllComments = await req.models.Comment.find({ post: id });
-      console.log("findallcomments: ", findAllComments)
+      // console.log("findallcomments: ", findAllComments)
       res.json({ status: "success", comments: findAllComments});
   } catch (error) {
     console.log("Error finding comment from db", error);

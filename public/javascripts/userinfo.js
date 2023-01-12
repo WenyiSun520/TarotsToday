@@ -20,6 +20,7 @@ async function getEntry() {
 
 //sort entries
 function sortEntry(responseJson) {
+  
   let selection = document.getElementById("time-sorting");
   let selectedValue = selection.options[selection.selectedIndex].value;
   if (selectedValue == "most-recent") {

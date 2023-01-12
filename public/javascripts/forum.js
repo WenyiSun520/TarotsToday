@@ -9,34 +9,35 @@ async function getAllPublicPost() {
     let post = responseJson[i];
     // console.log("post", post)
     let result = ` <div class="public-post">
-                        <h1 class="post-title">${post.title}</h1>
-                        <p class="post-username">${post.username}</p>
-                         <p class="post-content">${post.description}<p>
-                         <div class="public-post-preview">${await previewPublicPost(
-                           post
-                         )}<div>
+    <div class="post-detail">
+    <h1 class="post-title">${post.title}</h1>
+    <p class="post-username">${post.username}</p>
+    <p class="post-content">${post.description}</p>
+    </div>
+    <div class="public-post-preview">${await previewPublicPost(post)}</div>
 
-                         <div class="display"><button class="likePost-btn" onclick="likePost('${
-                           post._id
-                         }')">&#128077;</button>${
+            <div class="display"><button class="likePost-btn" onclick="likePost('${
+              post._id
+            }')">&#128077;</button>${
       post.like.length
     } <button class="dislikePost-btn" onclick="dislikePost('${
       post._id
     }')">&#128078</button> ${
       post.dislike.length
-    } <button class="addcomment-btn" onclick="displayCommentBox()">Add Comment</button> 
-      <button class="displayComments-btn" onclick="getAllComments('${
-      post._id
-    }')">&#9660;</button></div>
-          </div>
-          <div class="add-comments">
-          <h2>Share Your Thoughts: </h2>
+    } <button class="addcomment-btn" onclick="displayCommentBox()">Add Comment</button>
+                <button class="displayComments-btn" onclick="getAllComments('${
+                  post._id
+                }')">&#9660;</button>
+            </div>
+        <div class="add-comments">
+            <h2>Share Your Thoughts: </h2>
             <textarea class="public-comment" rows="5" cols="50" placeholder="Add comment..."></textarea>
             <button type="submit" onclick="addComment('${
               post._id
-            }')">Publish</button>  
-          </div>
-          <div class="all-comments"></div>`;
+            }')">Publish</button>
+        </div>
+        <div class="all-comments"></div>
+        </div>`;
     document.querySelector(".main-post").innerHTML += result;
   }
 }
@@ -87,15 +88,7 @@ async function dislikePost(id) {
     alert(responseJson.error);
   }
 }
-// function displayCommentWindow(){
-//   let ele = document.querySelector(".all-comments");
-//   ele.classList.toggle("show-add-comments-window");
-//   if(ele.classList.contains("show-add-comments-window")){
-//     let btn = document.querySelector()
-//   }
-// let angle = `<button class="displayComments-btn" onclick="getAllComments('${post._id}')"> &#9650;</button>`;
 
-// }
 async function getAllComments(id) {
   let ele = document.querySelector(".all-comments");
   ele.classList.toggle("show-add-comments-window");
@@ -107,9 +100,10 @@ if(responseJson.status == "success"){
   document.querySelector(".all-comments").innerHTML = "";
   for (let i = 0; i < allComments.length; i++) {
       let post = allComments[i];
-       let result = ` <div class="comment-box>
+      // console.log("postComment: " + post.username + " "+post.created_date);
+       let result = ` <div class="comment-box">
                ${post.comment}
-               <div class="comment-user-info">${post.username} ${post.date}</div>
+               <div class="comment-user-info">${post.username},${post.created_date}</div>
             </div>`;
         document.querySelector(".all-comments").innerHTML += result;  
   }  

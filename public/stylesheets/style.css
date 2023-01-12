@@ -272,8 +272,8 @@ p {
 }
 
 
-.display {
-  float: right;
+.public-post .display {
+  float: left;
 }
 
 
@@ -289,9 +289,15 @@ p {
   display: flex;
   flex-direction: column;
   margin: 10px;
+  transition: height 5s;
 }
 
 .show-add-comments-window button {
   width: fit-content;
   margin-top: 10px;
+}
+
+.comment-box {
+  border: 2px solid black;
+  margin: 5px
 }
