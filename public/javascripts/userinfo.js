@@ -57,6 +57,7 @@ async function loadEntry(responseJson) {
   document.getElementById("results").innerHTML = "";
   for (let i = 0; i < responseJson.length; i++) {
     let oneRead = responseJson[i];
+    let id = oneRead._id;
     let cleanDate = oneRead.date.substring(0, 10);
     let cleanType = oneRead.typeOfReading.substring(
       0,
@@ -79,7 +80,7 @@ async function loadEntry(responseJson) {
                       </div>
                     <div class="entry-back">
                     ${post}
-                    <button  onclick="openShareWindow('${i}', '${oneRead}')">Share this entry</button>
+                    <button  onclick="openShareWindow('${oneRead._id}')">Share this entry</button>
                     <button class="delete-btn" onclick="deleteEntry('${oneRead._id}')">&#10006;</button>
                     </div>
                     </div>
@@ -119,54 +120,80 @@ function flipEntry(id) {
 }
 
 async function deleteEntry(id) {
-  console.log(id);
+  // console.log(id);
   let response = await fetch("api/readings/entryId?id=" + id, {
     method: "DELETE",
   });
   let responseJAon = await response.json();
-  console.log(responseJAon.status);
+  // console.log(responseJAon.status);
   if (responseJAon.status == "success") {
     init();
   } else {
     alert(responseJAon.error);
   }
 }
-function openShareWindow(id, entry) {
+
+async function openShareWindow(id) {
   // document.getElementById(id).classList.remove("is-flipped");
   document.querySelector(".share-entry").style.display = "flex";
+  let response = await fetch("api/readings/previewPosts?id=" + id);
+  let responseJson = await response.json();
+  // let results = "";
+  if (responseJson.status == "success") {
+    let imgTags = responseJson.previewObj.imgs;
+    // console.log("imgTags", imgTags);
+    for (let i = 0; i < imgTags.length; i++) {
+      document.querySelector(".post-preview").innerHTML += imgTags[i];
+    }
+    document.querySelector(".post-preview").innerHTML +=
+      responseJson.previewObj.journal;
+  } else {
+    document.querySelector(".post-preview").innerHTML =
+      "Can't find your preview post";
+  }
+  let idBox = document.createElement("div");
+  idBox.setAttribute("id", "postId");
+  idBox.textContent = id;
+  document.querySelector(".share-entry").appendChild(idBox);
+  document.querySelector("#postId").style.visibility = "hidden";
 
-  // let title = document.querySelector(".title-input").value;
-  // let cotent = document.querySelector(".publicpost-content").value;
-  // entry.title = title;
-  // entry.content = cotent;
-  // return entry;
-  
+//   let title = document.querySelector(".title-input").value;
+//   let content = document.querySelector(".publicpost-content").value;
+//   entryObj = {
+//     title:title,
+//     content: content,
+//     postId : id
+//   }
+//   console.log("entryObj", entryObj)
 }
-document
-  .querySelector(".post-public-btn")
-  .addEventListener("click", shareEntry(entry));
-async function shareEntry(entry) {
-  console.log("I'm in shareEntry");
+
+
+async function shareEntry() {
+  // console.log("I'm in shareEntry");
+  let title = document.querySelector(".title-input").value;
+  let content = document.querySelector(".publicpost-content").value;
+  let id = document.querySelector("#postId").textContent;
+
   let userIdentity = await fetchJSON(`api/users/myIdentity`);
   let username = userIdentity.userInfo.username;
-  console.log(username);
+  // console.log(username);
   let obj = {
-    name: username,
-    typeOfReading: entry.typeOfReading,
-    cards: entry.cards,
-    journalEntry: entry.journalEntry,
-    date: entry.date,
+    username: username,
+    title: title,
+    description: content,
+    postId: id,
   };
   let response = await fetch("api/forum", {
     method: "POST",
-    header: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(obj),
   });
   let responseJson = await response.json();
   console.log(responseJson);
-  if (responseJson.status == "success") {
+  if (responseJson.status == "Success") {
+    document.querySelector(".share-entry").style.display = "none";
     init();
   } else {
-    alert(responseJson.error);
+   // alert(responseJson.error);
   }
 }

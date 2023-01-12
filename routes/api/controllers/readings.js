@@ -167,7 +167,45 @@ router.delete("/entryId", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
+router.get("/previewPosts", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      let id = req.query.id;
+      let username = req.session.account.username;
+      let userData = await req.models.Users.findOne({
+        username: username,
+      });
 
+      let userEntries = userData.readings;
+      let previewObj;
+      for (let i = 0; i < userEntries.length; i++) {
+        if (userEntries[i]._id == id) {
+          let imgTags = await readingPreview(req,userEntries[i]);
+          previewObj = {
+            imgs: imgTags,
+            journal: userEntries[i].journalEntry,
+          };
+          // onsole.log("previewObj", previewObj)
+        res.json({ status: "success", previewObj: previewObj });
+        }
+      }
+    } else {
+      res.status(401).json({ status: "error", error: "not logged in" });
+    }
+  } catch (error) {
+    console.log("Error previewing your entry: ", error);
+    res.status(500).json({ status: "error", error: error });
+  }
+});
+async function readingPreview(req,entry){
+  let imgTags = await Promise.all(entry.cards.map(async(id)=>{
+      let oneCard = await req.models.TarotCard.findOne({ id: id });
+      return `<img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />`;
+  })
+  )
+  // console.log("imgTags", imgTags)
+  return imgTags;
+}
 export default router;
 
 // Returns html for a single one card reading

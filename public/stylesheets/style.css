@@ -216,9 +216,7 @@ p {
 
 
 /* CSS for forum.html */
-.post-preview {
-  display: none;
-}
+
 
 
 .share-entry {
@@ -236,8 +234,44 @@ p {
   padding: 20px;
 }
 
-/* .share-window {
+.main-post {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+  width: 600px;
+  height: fit-content;
+  margin-left: 300px;
+  margin-right: 200px;
+}
+
+.public-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+  width: 580px;
+  height: fit-content;
+  margin: 10px;
+}
+
+.post-title, .post-username, .post-content, .public-post-journal {
+  margin-left: 10px;
+}
+
+.public-post .public-post-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.public-post-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
 
-} */
+.display-triangle{
+  float:right;
+}

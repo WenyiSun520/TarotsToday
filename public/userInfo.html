@@ -33,8 +33,7 @@
     <main>
         <div id="userInfoName"></div>
         <div>
-            <input type="checkbox" id="is-all-flip" name="is-all-flip" onchange="flipAllEntries()">
-            <label for="is-all-flip">Filp All Entreis</label>
+            <button id="is-all-flip" name="is-all-flip" onclick="flipAllEntries()">Filp All Entreis</button>
         </div>
         <label for="time-sorting">Sort:</label>
         <select name="time-sorting" id="time-sorting" onchange="init()">
@@ -50,14 +49,12 @@
             <label for="triple-reading">Only Show Triple-card Readings</label>
         </div>
         <div id="results"></div>
-        <div class="share-entry">
-            
+        <div class="share-entry">       
             <h2>Share Your Post: </h2>
             <input type="text" class="title-input" placeholder="Add a title for your post...">
             <textarea class="publicpost-content" rows="5" cols="50" placeholder="Add journal..."></textarea>
+            <button type="submit" class="post-public-btn" onclick="shareEntry()">Publish</button>  
             <div class="post-preview"></div>
-            <button type="submit" class="post-public-btn">Publish</button>
-        
         </div>
     </main>
     <script type="text/javascript" src="javascripts/userinfo.js"></script>

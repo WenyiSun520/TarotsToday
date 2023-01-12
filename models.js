@@ -43,17 +43,7 @@ async function main(){
     username: String,
     title: String,
     description: String,
-    content: {
-      typeOfReading: String,
-      cards: [String], // array of card ids
-      journalEntry: String, // journal entry associated with the reading
-      date: Date,
-    },
-    likes:[],
-    comments:[{
-      username: String,
-      detail: String
-    }]
+    content: { type: mongoose.Schema.Types.ObjectId, ref: "readings" },
   });
   models.PublicEntry = mongoose.model("PublicEntry", publicEntrySchema);
 
