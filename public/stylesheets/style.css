@@ -196,9 +196,21 @@ p {
 }
 
 /* CSS for about-tarot.html */
+#about-section {
+  margin-top:20px;
+}
+
+
 .about-card {
   margin-bottom: 1rem;
+  transition: all 0.8s;
 }
+
+.about-card:hover {
+  transform: scale(1.1);
+}
+
+
 
 .about-card-name {
   font-size: large;
@@ -239,7 +251,15 @@ p {
   border-width: .05rem;
 }
 
+.about-tarot-searchbar {
+  border-radius: 15px;
+  width: 100px;
+  transition: 2s;
+}
 
+.about-tarot-searchbar:hover {
+  width: 300px;
+}
 
 /* CSS for forum.html */
 

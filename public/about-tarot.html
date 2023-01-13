@@ -8,9 +8,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="icon" href="./imgs/icon.png" type="image/x-icon">
-    <script src="javascripts/utils.js"></script>
-    <script src="javascripts/about.js"></script>
-    <script src="javascripts/identity.js"></script>
 </head>
 
 <body onload="init()">
@@ -39,9 +36,13 @@
         </nav>
     </header>
 
-    <h1>About Tarot Cards:</h1>
-
+    <h1 style="display:inline;">About Tarot Cards:</h1>
+    <span class="search-cards-box"><button onclick="searchCard()" style="margin-right:5px;">&#128270;</button><input type="text" class="about-tarot-searchbar" placeholder="  &#128270;Search a card"/>
+    </span>
     <div id="about-section" class="container"></div>
+    <script src="javascripts/utils.js"></script>
+    <script src="javascripts/about.js"></script>
+    <script src="javascripts/identity.js"></script>
 </body>
 
 </html>
