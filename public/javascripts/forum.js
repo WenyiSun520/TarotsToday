@@ -24,12 +24,12 @@ async function getAllPublicPost() {
       post._id
     }')">&#128078</button> ${
       post.dislike.length
-    } <button class="addcomment-btn" onclick="displayCommentBox()">Add Comment</button>
+    } <button class="addcomment-btn" onclick="displayCommentBox('${i}')">Add Comment</button>
                 <button class="displayComments-btn" onclick="getAllComments('${
                   post._id
                 }')">&#9660;</button>
             </div>
-        <div class="add-comments">
+        <div class="add-comments add-comments-${i}">
             <h2>Share Your Thoughts: </h2>
             <textarea class="public-comment" rows="5" cols="50" placeholder="Add comment..."></textarea>
             <button type="submit" onclick="addComment('${
@@ -111,8 +111,8 @@ if(responseJson.status == "success"){
 
 }
 
-function displayCommentBox() {
-  let ele = document.querySelector(".add-comments");
+function displayCommentBox(i) {
+  let ele = document.querySelector(`.add-comments-${i}`);
   ele.classList.toggle("show-add-comments-window");
 }
 

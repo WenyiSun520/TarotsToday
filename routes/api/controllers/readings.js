@@ -95,7 +95,12 @@ router.get("/user", async (req, res) => {
       // find user in User collection and get all the readings
       username: username,
     });
-    let userReadings = user.readings;
+    let userReadings;
+    if (user == null) {
+      userReadings = 0;
+    } else {
+      userReadings = user.readings;
+    }
     res.json(userReadings);
   } catch (error) {
     console.log("Error fetching user results", error);
@@ -136,7 +141,7 @@ router.get("/all", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
-// delete entry 
+// delete entry
 router.delete("/entryId", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
@@ -147,17 +152,17 @@ router.delete("/entryId", async (req, res) => {
       });
 
       let userEntries = userData.readings;
-      console.log(userEntries)
+      console.log(userEntries);
       // await userEntries.deleteOne({ _id: id });
       for (let i = 0; i < userEntries.length; i++) {
-        if(userEntries[i]._id == id){
-          userEntries.splice(i,1);
+        if (userEntries[i]._id == id) {
+          userEntries.splice(i, 1);
           break;
         }
       }
       console.log(userEntries);
       await userData.save();
-   
+
       res.json({ status: "success", entreis: userEntries });
     } else {
       res.status(401).json({ status: "error", error: "not logged in" });
@@ -181,13 +186,13 @@ router.get("/previewPosts", async (req, res) => {
       let previewObj;
       for (let i = 0; i < userEntries.length; i++) {
         if (userEntries[i]._id == id) {
-          let imgTags = await readingPreview(req,userEntries[i]);
+          let imgTags = await readingPreview(req, userEntries[i]);
           previewObj = {
             imgs: imgTags,
             journal: userEntries[i].journalEntry,
           };
           // onsole.log("previewObj", previewObj)
-        res.json({ status: "success", previewObj: previewObj });
+          res.json({ status: "success", previewObj: previewObj });
         }
       }
     } else {
@@ -198,12 +203,13 @@ router.get("/previewPosts", async (req, res) => {
     res.status(500).json({ status: "error", error: error });
   }
 });
-async function readingPreview(req,entry){
-  let imgTags = await Promise.all(entry.cards.map(async(id)=>{
+async function readingPreview(req, entry) {
+  let imgTags = await Promise.all(
+    entry.cards.map(async (id) => {
       let oneCard = await req.models.TarotCard.findOne({ id: id });
       return `<img class="oneCardDisplayImg" src="imgs/cards/${oneCard.img}" alt="${oneCard.name}" />`;
-  })
-  )
+    })
+  );
   // console.log("imgTags", imgTags)
   return imgTags;
 }
@@ -278,7 +284,7 @@ async function threeCardReading(req) {
     for (let i = 1; i < 4; i++) {
       let randNum = Math.floor(Math.random() * 77);
       let oneCard = await req.models.TarotCard.findOne({ id: randNum });
-      
+
       // if it's not already in the array add it to the array
       if (!returnHTML.cardsId.includes(randNum)) {
         cards.push(oneCard);

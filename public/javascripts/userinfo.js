@@ -7,15 +7,13 @@ async function init() {
 // Request and return user entry from endpoint
 async function getEntry() {
   // get username to find user entries in users collection
-  let userIdentity = await fetchJSON(`api/users/myIdentity`);
-  if (userIdentity.status == "loggedin") {
-    let username = userIdentity.userInfo.username;
-    document.getElementById("userInfoName").innerHTML = `<h1>${username}</h1>`;
+
+    let username = document.getElementById("userInfoName").textContent;
     // get user entries
     let response = await fetch("api/readings/user?username=" + username);
     let responseJson = await response.json();
     return responseJson;
-  }
+  
 }
 
 //sort entries

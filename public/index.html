@@ -7,10 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Nunito+Sans:wght@200&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="icon" href="./imgs/icon.png" type="image/x-icon">
-  <script src="javascripts/index.js"></script>
-  <script src="javascripts/utils.js"></script>
-  <script src="javascripts/identity.js"></script>
+  <link rel="icon" href="./imgs/icon.png" type="image/x-icon">
+ 
 </head>
 
 <body onload="init()">
@@ -22,9 +20,15 @@
       </span>
       <span class="navbar-nav ms-auto">
         <p><a href="/about-tarot.html" class="nav-item">About Tarot</a></p>
-                        <p><a href="/forum.html" class="nav-item">Tarot Forum</a></p>
+        <p><a href="/forum.html" class="nav-item">Tarot Forum</a></p>
 
-                <p class="identity-text"></p>
+        <div class="dropdown">
+          <p class="identity-text"></p>
+          <div class="dropdown-content">
+            <a class="userinfo">Manage Your Readings</a>
+            <a class="userPublic">Manage Your Post and Comment</a>
+          </div>
+        </div>
         <p><a href="/signin" id="loginLink" class="nav-item">Log In</a></p>
         <p><a href="/signout" id="logoutLink" class="d-none nav-item">Log Out</a></p>
       </span>
@@ -35,7 +39,7 @@
   <main>
     <h1>Tarot Today</h1>
     <div id="name-greeting"></div>
-    <p id="introParagraph" >Welcome to Tarot Today! Where you can draw a random Tarot!</p>
+    <p id="introParagraph">Welcome to Tarot Today! Where you can draw a random Tarot!</p>
     <div class="container">
       <div class="row">
         <div class="col-sm-1">
@@ -60,6 +64,9 @@
       </div>
     </div>
   </main>
+  <script src="javascripts/identity.js"></script>
+  <script src="javascripts/index.js"></script>
+  <script src="javascripts/utils.js"></script>
 </body>
 
 </html>

@@ -7,8 +7,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="icon" href="./imgs/icon.png" type="image/x-icon">
-    <script src="javascripts/utils.js"></script>
-    <script src="javascripts/identity.js"></script>
 </head>
 
 <body onload="init()">
@@ -24,14 +22,21 @@
                 <p><a href="/about-tarot.html" class="nav-item">About Tarot</a></p>
                 <p><a href="/forum.html" class="nav-item">Tarot Forum</a></p>
 
-                <p class="identity-text"></p>
+                <div class="dropdown">
+                    <p class="identity-text"></p>
+                    <div class="dropdown-content">
+                    <a class="userinfo">Manage Your Readings</a>
+                    <a class="userPublic">Manage Your Post and Comment</a>
+                    </div>
+                </div>
+                
                 <p><a href="/signout" id="logoutLink" class="nav-item">Log
                         Out</a></p>
             </span>
         </nav>
     </header>
     <main>
-        <div id="userInfoName"></div>
+        <h1 id="userInfoName"></h1>
         <div>
             <button id="is-all-flip" name="is-all-flip" onclick="flipAllEntries()">Filp All Entreis</button>
         </div>
@@ -57,6 +62,9 @@
             <div class="post-preview"></div>
         </div>
     </main>
+    <script src="javascripts/index.js"></script>
+    <script src="javascripts/utils.js"></script>
+    <script src="javascripts/identity.js"></script>
     <script type="text/javascript" src="javascripts/userinfo.js"></script>
 </body>
 

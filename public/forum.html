@@ -22,16 +22,22 @@
             <span class="navbar-nav ms-auto">
                 <p><a href="/about-tarot.html" class="nav-item">About Tarot</a></p>
                 <p><a href="/forum.html" class="nav-item">Tarot Forum</a></p>
-                <p class="identity-text"></p>
-                    <p><a href="/signin" id="loginLink" class="nav-item">Log In</a></p>
-                    <p><a href="/signout" id="logoutLink" class="d-none nav-item">Log Out</a></p>
+                <div class="dropdown">
+                    <p class="identity-text"></p>
+                    <div class="dropdown-content">
+                        <a class="userinfo">Manage Your Readings</a>
+                        <a class="userPublic">Manage Your Post and Comment</a>
+                    </div>
+                </div>
+                <p><a href="/signin" id="loginLink" class="nav-item">Log In</a></p>
+                <p><a href="/signout" id="logoutLink" class="d-none nav-item">Log Out</a></p>
             </span>
         </nav>
     </header>
     <main>
         <h1>Welcome to Tarot Forum!</h1>
         Your published posts would be viewd by all users here!
-        <div class="main-post"></div>   
+        <div class="main-post"></div>
     </main>
     <script src="javascripts/forum.js"></script>
     <script src="javascripts/utils.js"></script>

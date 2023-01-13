@@ -71,7 +71,7 @@ async function loadMostRecentEntry() {
     // get user entries
     let response = await fetch("api/readings/user?username=" + username);
     let responseJson = await response.json();
-
+    if(responseJson.length > 0){
     let oneRead = responseJson[responseJson.length - 1];
     // load cards description
     let cardDescription = await loadCardsDescription(oneRead.cards);
@@ -85,6 +85,7 @@ async function loadMostRecentEntry() {
                     <hr>
                     </div>`;
     document.getElementById("showEntry").innerHTML += result;
+    }
   }
 }
 

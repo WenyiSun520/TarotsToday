@@ -6,7 +6,7 @@ main {
   margin: 1rem;
 }
 
-a {
+a, .identity-text {
   color: #005779;
   text-decoration: none;
 }
@@ -42,6 +42,32 @@ p {
 .identity-text {
   margin-right: 1.5rem;
 }
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid #b59d6d;
+  min-width: 200px;
+  box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
+  color: #b59d6d;
+  text-align: left;
+  padding: 12px 16px;
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown a:hover {
+  border-radius: 15px;
+  background-color: #b59d6d;
+  color: black;
+}
+
 
 /* CSS for index.html Tarot card displaying*/
 .oneCardDisplayImg {

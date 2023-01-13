@@ -3,20 +3,43 @@ loadIdentity();
 // Changes the DOM based on if someone is logged in or not
 async function loadIdentity() {
   let identityAllText = document.querySelectorAll(".identity-text");
+  let userInfoAll = document.querySelectorAll(".userinfo");
+  let userPublicAll = document.querySelectorAll(".userPublic");
 
   try {
     let identityInfo = await fetchJSON(`api/users/myIdentity`);
     if (identityInfo.status == "loggedin") {
       // If logged in, display save button and log out button, don't display login button
       myIdentity = identityInfo.userInfo.username;
-      identityAllText.forEach((idenidentityText)=>idenidentityText.innerHTML = `
+      // display username on userinfo.html page
+      if (document.getElementById("userInfoName") != null){
+        document.getElementById("userInfoName").innerHTML = myIdentity;
+      }
+        identityAllText.forEach(
+          (idenidentityText) => (idenidentityText.innerHTML = myIdentity)
+        );
+
+      userInfoAll.forEach(
+        (userInfoText) =>
+          (userInfoText.innerHTML = `
             <a href="/userInfo.html?user=${encodeURIComponent(
               identityInfo.userInfo.username
-            )}">${escapeHTML(identityInfo.userInfo.name)} (${escapeHTML(
-        identityInfo.userInfo.username
-      )})</a>`);
+            )}">Manage Your Readings</a>`)
+      );
+
+      userPublicAll.forEach(
+        (userPublicText) =>
+          (userPublicText.innerHTML = `
+            <a href="/userPublic.html?user=${encodeURIComponent(
+              identityInfo.userInfo.username
+            )}">Manage Your Post And Comment</a>`)
+      );
+
       if (document.getElementById("saveButton")) {
         document.getElementById("saveButton").classList.remove("d-none");
+      }
+      if (document.querySelector(".dropdown")) {
+        document.querySelector(".dropdown").classList.remove("d-none");
       }
       if (document.getElementById("logoutLink")) {
         document.getElementById("logoutLink").classList.remove("d-none");
@@ -30,6 +53,9 @@ async function loadIdentity() {
       if (document.getElementById("saveButton")) {
         document.getElementById("saveButton").classList.add("d-none");
       }
+       if (document.querySelector(".dropdown")) {
+         document.querySelector(".dropdown").classList.add("d-none");
+       }
       if (document.getElementById("logoutLink")) {
         document.getElementById("logoutLink").classList.add("d-none");
       }
@@ -55,4 +81,5 @@ async function loadIdentity() {
       document.getElementById("loginLink").classList.remove("d-none");
     }
   }
+  
 }
