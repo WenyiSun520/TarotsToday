@@ -76,6 +76,7 @@ router.post("/", async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         content: req.body.postId,
+        created_date: new Date(),
         like: [],
         dislike: [],
       });

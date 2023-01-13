@@ -19,5 +19,9 @@ router.get("/myIdentity", (req, res, next) => {
     return;
   }
 });
-
+router.get("getAllPosts", async(req, res)=>{
+  let username = req.session.account.username;
+  let allPosts = req.models.publicEntry.find({username:username});
+  res.json(allPosts)
+});
 export default router;

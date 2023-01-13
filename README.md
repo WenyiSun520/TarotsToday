@@ -2,6 +2,11 @@
 <p>Gisele Fox, Emiri Nishizawa, Wenyi Sun</p>
 
 <p>Our project will be a daily Tarot Card reader that allows users to see a card every day as well as add journal entries.</p>
+<h2>Claim</h2>
+
+**1.10.2023 By *WenyiSun***
+
+This project is originally from UW-INFO441 Server-side Decelopmet serving as a Final Group Project as seen above. I fork the original repo and continue devloping to add more functions to sharpen my full-stack skills
 
 <h2>Update</h2>
 

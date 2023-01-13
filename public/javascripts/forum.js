@@ -11,7 +11,7 @@ async function getAllPublicPost() {
     let result = ` <div class="public-post">
     <div class="post-detail">
     <h1 class="post-title">${post.title}</h1>
-    <p class="post-username">${post.username}</p>
+    <p class="post-username">${post.username}, ${post.created_date}</p>
     <p class="post-content">${post.description}</p>
     </div>
     <div class="public-post-preview">${await previewPublicPost(post)}</div>

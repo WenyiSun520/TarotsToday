@@ -327,3 +327,13 @@ p {
   border: 2px solid black;
   margin: 5px
 }
+
+/* CSS For UserPublic page */
+.comment-table, .posts-table {
+  width: 400px;
+}
+
+table, th, td {
+  border: 2px solid #b59d6d;
+  width: 100%;
+}
