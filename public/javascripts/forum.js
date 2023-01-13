@@ -16,9 +16,9 @@ async function getAllPublicPost() {
     </div>
     <div class="public-post-preview">${await previewPublicPost(post)}</div>
 
-            <div class="display"><button class="likePost-btn" onclick="likePost('${
-              post._id
-            }')">&#128077;</button>${
+    <div class="display"><button class="likePost-btn" onclick="likePost('${
+        post._id
+    }')">&#128077;</button>${
       post.like.length
     } <button class="dislikePost-btn" onclick="dislikePost('${
       post._id
@@ -65,7 +65,7 @@ async function previewPublicPost(post) {
 async function likePost(id) {
   let likeBtn = document.querySelector(".likePost-btn");
   let response = await fetch(`api/forum/likePost?id=${id}`, {
-    method: "POST",
+    method: "POST"
   });
   let responseJson = await response.json();
   if (responseJson.status == "success") {
@@ -78,7 +78,7 @@ async function likePost(id) {
 async function dislikePost(id) {
   let dislikeBtn = document.querySelector(".dislikePost-btn");
   let response = await fetch(`api/forum/dislikePost?id=${id}`, {
-    method: "POST",
+    method: "POST"
   });
   let responseJson = await response.json();
   if (responseJson.status == "success") {

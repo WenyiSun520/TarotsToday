@@ -4,17 +4,25 @@
 <p>Our project will be a daily Tarot Card reader that allows users to see a card every day as well as add journal entries.</p>
 <h2>Claim</h2>
 
-**1.10.2023 By *WenyiSun***
+**1.07.2023 By *WenyiSun***
 
 This project is originally from UW-INFO441 Server-side Decelopmet serving as a Final Group Project as seen above. I fork the original repo and continue devloping to add more functions to sharpen my full-stack skills
 
 <h2>Update</h2>
 
-**1.14.2023 By *WenyiSun***
+**1.12.2023 By *WenyiSun***
+- User feedback:
+  - The tarot cards expected to be interactive on main page after user get their readings. Interactive here, according to the user, means can show more detail of the explaination of the card
+  -  About Page should has a searching functions 
+-  Bugs Decteacted by User:
+   -  All comments shows under the first post 
+   -  ( fixed, but need to be tested by another user )~~Likes and Dislikes can't be accumulate~~
+  
+**1.09.2023 By *WenyiSun***
 - Add Tarot Forum section with functions for adding comments for each posts
 - Add shareEntry function so users can public their post on Tarot Forum
 
-**1.13.2023 By *WenyiSun***
+**1.07.2023 By *WenyiSun***
 - This below URL link is expired due to logging out of UW orgnization in Microsoft Azure, please use Localhost while testing this web application after npm start command on terminal
 - <p><a href="https://localhost:3000">https://localhost:3000</a></p>
 

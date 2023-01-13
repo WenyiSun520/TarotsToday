@@ -96,19 +96,25 @@ router.post("/", async (req, res) => {
 });
 router.post("/likePost", async (req, res) => {
   try {
+    console.log("ifAuthenticated: " + req.session.isAuthenticated);
     if (req.session.isAuthenticated) {
       let postId = req.query.id;
+      console.log("postId"+postId);
       let post = await req.models.PublicEntry.findById(postId);
-      if (post.like.includes(req.session.username)) {
-        let index = post.like.indexOf(req.session.username);
+        console.log("post",post);
+
+      if (post.like.includes(req.session.account.username)) {
+        let index = post.like.indexOf(req.session.account.username);
+        console.log("index of the username in like array:" + index);
         post.like.splice(index, 1);
       } else {
-        post.like.push(req.session.username);
+        post.like.push(req.session.account.username);
+        console.log("post.like array:" + post.like[0]);
       }
       //if the user previsouly dislike the post, and change mind to like, 
       // remove username from dislike array
-      if(post.dislike.includes(req.session.username)){
-        let index = post.dislike.indexOf(req.session.username);
+      if (post.dislike.includes(req.session.account.username)) {
+        let index = post.dislike.indexOf(req.session.account.username);
         post.dislike.splice(index, 1);
       }
       await post.save();
@@ -130,16 +136,16 @@ router.post("/dislikePost", async (req, res) => {
     if (req.session.isAuthenticated) {
       let postId = req.query.id;
       let post = await req.models.PublicEntry.findById(postId);
-      if (post.dislike.includes(req.session.username)) {
-        let index = post.dislike.indexOf(req.session.username);
+      if (post.dislike.includes(req.session.account.username)) {
+        let index = post.dislike.indexOf(req.session.account.username);
         post.dislike.splice(index, 1);
       } else {
-        post.dislike.push(req.session.username);
+        post.dislike.push(req.session.account.username);
       }
       //if the user previsouly like the post, and change mind to dislike,
       // remove username from like array
-      if (post.like.includes(req.session.username)) {
-        let index = post.like.indexOf(req.session.username);
+      if (post.like.includes(req.session.account.username)) {
+        let index = post.like.indexOf(req.session.account.username);
         post.like.splice(index, 1);
       }
       await post.save();

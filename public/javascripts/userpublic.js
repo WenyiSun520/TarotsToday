@@ -10,7 +10,3 @@ async function getAllPublicPosts(){
     })
 }
 
-//首页的卡是可以互动的
-// about page：加一个search卡片功能
-// comments 都集中在第一个post下面了
-//不同的用户点赞无法累计
