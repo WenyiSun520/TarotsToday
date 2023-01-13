@@ -15,7 +15,7 @@ This project is originally from UW-INFO441 Server-side Decelopmet serving as a F
   - The tarot cards expected to be interactive on main page after user get their readings. Interactive here, according to the user, means can show more detail of the explaination of the card
   -  About Page should has a searching functions 
 -  Bugs Decteacted by User:
-   -  All comments shows under the first post 
+   -  ~~All comments shows under the first post~~
    -  ( fixed, but need to be tested by another user )~~Likes and Dislikes can't be accumulate~~
   
 **1.09.2023 By *WenyiSun***

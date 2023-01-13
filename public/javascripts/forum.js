@@ -16,28 +16,31 @@ async function getAllPublicPost() {
     </div>
     <div class="public-post-preview">${await previewPublicPost(post)}</div>
 
-    <div class="display"><button class="likePost-btn" onclick="likePost('${
-        post._id
-    }')">&#128077;</button>${
-      post.like.length
-    } <button class="dislikePost-btn" onclick="dislikePost('${
+    <div class="display">
+    <button class="likePost-btn" onclick="likePost('${
       post._id
-    }')">&#128078</button> ${
-      post.dislike.length
-    } <button class="addcomment-btn" onclick="displayCommentBox('${i}')">Add Comment</button>
-                <button class="displayComments-btn" onclick="getAllComments('${
-                  post._id
-                }')">&#9660;</button>
-            </div>
-        <div class="add-comments add-comments-${i}">
+    }')">&#128077;</button>${post.like.length} 
+    <button class="dislikePost-btn" onclick="dislikePost('${
+      post._id
+    }')">&#128078</button> ${post.dislike.length} 
+    <button class="addcomment-btn" onclick="displayCommentBox('${
+      post._id
+    }')">Add Comment</button>
+    <button class="displayComments-btn" onclick="getAllComments('${
+      post._id
+    }')">&#9660;</button>
+    </div>
+    <div class="add-comments add-comments-${post._id}">
             <h2>Share Your Thoughts: </h2>
-            <textarea class="public-comment" rows="5" cols="50" placeholder="Add comment..."></textarea>
+            <textarea class="public-comment-${
+              post._id
+            }" rows="5" cols="50" placeholder="Add comment..."></textarea>
             <button type="submit" onclick="addComment('${
               post._id
             }')">Publish</button>
-        </div>
-        <div class="all-comments"></div>
-        </div>`;
+    </div>
+    <div class="all-comments all-comments-${post._id}"></div>
+    </div>`;
     document.querySelector(".main-post").innerHTML += result;
   }
 }
@@ -90,14 +93,14 @@ async function dislikePost(id) {
 }
 
 async function getAllComments(id) {
-  let ele = document.querySelector(".all-comments");
+  let ele = document.querySelector(`.all-comments-${id}`);
   ele.classList.toggle("show-add-comments-window");
 let response = await fetch(`api/forum/getComment?id=${id}`);
 let responseJson = await response.json();
 // console.log("all comements responseJson: ", responseJson.comments)
 if(responseJson.status == "success"){
   let allComments = responseJson.comments;
-  document.querySelector(".all-comments").innerHTML = "";
+  ele.innerHTML = "";
   for (let i = 0; i < allComments.length; i++) {
       let post = allComments[i];
       // console.log("postComment: " + post.username + " "+post.created_date);
@@ -105,19 +108,18 @@ if(responseJson.status == "success"){
                ${post.comment}
                <div class="comment-user-info">${post.username},${post.created_date}</div>
             </div>`;
-        document.querySelector(".all-comments").innerHTML += result;  
+        ele.innerHTML += result;  
   }  
 }
-
 }
 
-function displayCommentBox(i) {
-  let ele = document.querySelector(`.add-comments-${i}`);
+function displayCommentBox(id) {
+  let ele = document.querySelector(`.add-comments-${id}`);
   ele.classList.toggle("show-add-comments-window");
 }
 
 async function addComment(id) {
-  let comment = document.querySelector(".public-comment").value;
+  let comment = document.querySelector(`.public-comment-${id}`).value;
   let obj = {
     comment: comment,
     id: id,
@@ -129,8 +131,8 @@ async function addComment(id) {
     body: JSON.stringify(obj),
   });
   let responseJson = await response.json();
-  if (responseJson.status == "success") {
-   displayCommentBox();
+  if (responseJson.status == "success") { // hide the commentbox
+   displayCommentBox(id); 
     // add sth
   } else if (responseJson.status == "fail") {
     alert(responseJson.error);
