@@ -15,6 +15,13 @@ p {
   margin-bottom: 0rem;
 }
 
+#canvas {
+
+  z-index: -1;
+  background-color: black;
+  /* background-color: rgb(48,25,52); */
+}
+
 /* CSS for Navbar */
 .navbar {
   padding: 1rem;
@@ -349,11 +356,11 @@ p {
 }
 
 .backTop-anchor {
-  font-size:24px;
+  font-size: 24px;
   background-color: #b59d6d;
   border-radius: 10px;
-  padding:2px;
-  top:90%;
+  padding: 2px;
+  top: 90%;
   left: 90%;
   position: fixed
 }
