@@ -24,7 +24,7 @@ This project is originally from UW-INFO441 Server-side Decelopmet serving as a F
 
 **1.07.2023 By *WenyiSun***
 - This below URL link is expired due to logging out of UW orgnization in Microsoft Azure, please use Localhost while testing this web application after npm start command on terminal
-- <p><a href="https://localhost:3000">https://localhost:3000</a></p>
+- <p><a href="http://localhost:3000">https://localhost:3000</a></p>
 
 ~~<h2>URL to our site</h2>~~
 ~~<p><a href="https://info441-au22-tarotstoday.azurewebsites.net/">https://info441-au22-tarotstoday.azurewebsites.net/</a></p>~~

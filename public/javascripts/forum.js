@@ -8,7 +8,7 @@ async function getAllPublicPost() {
   for (let i = 0; i < responseJson.length; i++) {
     let post = responseJson[i];
     // console.log("post", post)
-    let result = ` <div class="public-post">
+    let result = ` <div id= "${post._id}" class="public-post">
     <div class="post-detail">
     <h1 class="post-title">${post.title}</h1>
     <p class="post-username">${post.username}, ${post.created_date}</p>
@@ -132,6 +132,7 @@ async function addComment(id) {
   });
   let responseJson = await response.json();
   if (responseJson.status == "success") { // hide the commentbox
+    document.querySelector(`.public-comment-${id}`).value="";
    displayCommentBox(id); 
     // add sth
   } else if (responseJson.status == "fail") {

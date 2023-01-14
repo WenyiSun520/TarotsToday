@@ -36,27 +36,30 @@
             </span>
         </nav>
     </header>
-    <main>
+    <main onload="init()">
         <h1 id="userInfoName"></h1>
 
         <div class="sharedPost">
             <h2>Your Public Posts:</h2>
-            
+
             <table class="posts-table">
                 <thead>
                     <tr>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Contents
-                    </th>
-                    <th>
-                        Delete
-                    </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Contents
+                        </th>
+                        <th>
+                            Detail
+                        </th>
+                        <th>
+                            Delete
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="post-table-body">
 
                 </tbody>
             </table>
@@ -70,15 +73,18 @@
                             Date
                         </th>
                         <th>
-                        Comment
+                            Comment
+                        </th>
+                        <th>
+                            Detail
                         </th>
                         <th>
                             Delete
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-            
+                <tbody class="comment-table-body">
+
                 </tbody>
             </table>
 
