@@ -10,6 +10,11 @@ This project is originally from UW-INFO441 Server-side Decelopmet serving as a F
 
 <h2>Update</h2>
 
+**1.13.2023 By *WenyiSun***
+- Debug from 1/12 user feedback 
+- Add a interaction animation on main page(index.html)
+
+
 **1.12.2023 By *WenyiSun***
 - User feedback:
   - The tarot cards expected to be interactive on main page after user get their readings. Interactive here, according to the user, means can show more detail of the explaination of the card
