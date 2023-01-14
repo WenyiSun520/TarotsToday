@@ -2,7 +2,15 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+// connect redis to sessions
 import session from "express-session";
+import Redis from "ioredis";
+import connectRedis from "connect-redis";
+const RedisStore = connectRedis(session);
+
+//configure redis client
+let redisClient = new Redis();
+
 import msIdExpress from "microsoft-identity-express";
 const appSettings = {
   appCredentials: {
@@ -43,9 +51,10 @@ app.use((req, res, next) => {
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(
   session({
+    store: new RedisStore({ client: redisClient }),
     secret: "this8is7a6secret5of4a5",
     saveUninitialized: true,
-    cookie: { maxAge: oneDay },
+    cookie: { secure: false, httpOnly: false, maxAge: oneDay },
     resave: false,
   })
 );

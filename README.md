@@ -11,6 +11,9 @@ This project is originally from UW-INFO441 Server-side Decelopmet serving as a F
 <h2>Update</h2>
 
 **1.13.2023 By *WenyiSun***
+- Use Redis(ioredis package) to create sessions and cookies
+  
+**1.13.2023 By *WenyiSun***
 - Debug from 1/12 user feedback 
 - Add a interaction animation on main page(index.html)
 
