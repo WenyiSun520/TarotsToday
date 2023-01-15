@@ -17,6 +17,7 @@ p {
 
 #canvas {
 
+  position: absolute;
   z-index: -1;
   background-color: black;
   /* background-color: rgb(48,25,52); */

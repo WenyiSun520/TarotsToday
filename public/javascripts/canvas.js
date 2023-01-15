@@ -5,7 +5,7 @@ let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d"); // get the context oc the canvas
 //set the size of canvas
 canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
+canvas.height = window.innerHeight+100;
 
 //set up basic variables for future reference
 let particleNum = 100;
