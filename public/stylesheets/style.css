@@ -262,6 +262,7 @@ p {
 .about-tarot-searchbar {
   border-radius: 15px;
   width: 100px;
+  text-indent: 10px;
   transition: 2s;
 }
 
