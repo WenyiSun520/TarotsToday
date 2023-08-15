@@ -1,8 +1,12 @@
 <h1>INFO 441 Project: Daily Tarot Card Reader and Journal</h1>
 <p>Gisele Fox, Emiri Nishizawa, Wenyi Sun</p>
 
-<p>Our project will be a daily Tarot Card reader that allows users to see a card every day as well as add journal entries.</p>
+<p>Our project is a daily Tarot Card reader that allows users to see a card every day as well as add journal entries.</p>
 <h2>Claim</h2>
+
+**08.15.2023 by *WenyiSun***
+
+The mongodb database is down because the sb was hosted by another teammate. I will try to rehost the dabase on my MongoDB account from my site later today
 
 **1.07.2023 By *WenyiSun***
 
