@@ -6,7 +6,7 @@
 
 **08.15.2023 by *WenyiSun***
 
-The mongodb database is down because the sb was hosted by another teammate. I will try to rehost the dabase on my MongoDB account from my site later today
+The mongodb database is down because the db was hosted by another teammate. I will rehost the dabase to my MongoDB account from my site later today
 
 **1.07.2023 By *WenyiSun***
 
