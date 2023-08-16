@@ -8,7 +8,7 @@ async function main(){
   console.log("connecting to mongodb");
 
   await mongoose.connect(
-    "mongodb+srv://WenyiEmiriGisele:WenyiEmiriGisele@tarottoday.vrffuyq.mongodb.net/data?retryWrites=true&w=majority"
+    "mongodb+srv://catowel:SUN19990520@cluster0.vszkld0.mongodb.net/?retryWrites=true&w=majority"
   );
 
   console.log("successfully connected to mongodb!");

@@ -253,6 +253,7 @@ async function oneCardReading(req) {
     );
 
     // return the html
+    console.log(returnHTML)
     return returnHTML;
   } catch (error) {
     console.log("Error connecting to db", error);

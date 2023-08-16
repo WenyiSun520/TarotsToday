@@ -7,6 +7,7 @@ async function init() {
 
 let cardsId = []; // create a global array to save fetched cards ids
 
+
 // Accepts a number to represent how many cards it needs to show
 // Displays the HTML of the card reading
 async function loadReading(numOfCards) {

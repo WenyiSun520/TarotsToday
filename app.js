@@ -4,27 +4,31 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 // connect redis to sessions
 import session from "express-session";
-import Redis from "ioredis";
+// import Redis from "ioredis";
 import connectRedis from "connect-redis";
 const RedisStore = connectRedis(session);
 
 //configure redis client
-let redisClient = new Redis();
+// let redisClient = new Redis();
 
-import msIdExpress from "microsoft-identity-express";
-const appSettings = {
-  appCredentials: {
-    clientId: "a43c224f-4892-4752-aa8c-9d684e148d38",
-    tenantId: "f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
-    clientSecret: "bvx8Q~ymGN4fwkdaUNcr2zsHlbZ_Q8WlRLZOHa0I",
-  },
-  authRoutes: {
-    // redirect: "https://info441-au22-tarotstoday.azurewebsites.net/redirect",
-    redirect: "http://localhost:3000/redirect",
-    error: "/error",
-    unauthorized: "/unauthorized",
-  },
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase-admin/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBny8bIVb1JuM2jQWoom19ObDmwzRx91kM",
+  authDomain: "tarotstoday.firebaseapp.com",
+  projectId: "tarotstoday",
+  storageBucket: "tarotstoday.appspot.com",
+  messagingSenderId: "399951502589",
+  appId: "1:399951502589:web:826d831e401bad1095f294"
 };
+
+// Initialize Firebase
+const initializeFirebase = initializeApp(firebaseConfig);
+
 
 import apiRouter from "./routes/api/api.js";
 
@@ -49,28 +53,18 @@ app.use((req, res, next) => {
   next();
 });
 const oneDay = 1000 * 60 * 60 * 24;
-app.use(
-  session({
-    store: new RedisStore({ client: redisClient }),
-    secret: "this8is7a6secret5of4a5",
-    saveUninitialized: true,
-    cookie: { secure: false, httpOnly: false, maxAge: oneDay },
-    resave: false,
-  })
-);
+// app.use(
+//   session({
+//     store: new RedisStore({ client: redisClient }),
+//     secret: "this8is7a6secret5of4a5",
+//     saveUninitialized: true,
+//     cookie: { secure: false, httpOnly: false, maxAge: oneDay },
+//     resave: false,
+//   })
+// );
 
 app.use("/api", apiRouter);
 
-const msid = new msIdExpress.WebAppAuthClientBuilder(appSettings).build();
-app.use(msid.initialize());
 
-app.get("/signin", msid.signIn({ postLoginRedirect: "/" }));
-app.get("/signout", msid.signOut({ postLogoutRedirect: "/" }));
-app.get("/error", (req, res) => {
-  res.status(500).send("Error: Server error");
-});
-app.get("/unauthorized", (req, res) => {
-  res.status(401).send("Error: Unauthorized");
-});
 
 export default app;
