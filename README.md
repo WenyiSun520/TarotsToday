@@ -5,8 +5,9 @@
 <h2>Claim</h2>
 
 **08.15.2023 by *WenyiSun***
-The project is currently down due to the expiration of Microsoft Azure account. I'm changing the authentification from Azure to Google Firebase and update the backend correspondingly.
-**(Problem solved)** The mongodb database is down because the db was hosted by another teammate. I will rehost the dabase to my MongoDB account from my site later today
+- The project is currently down due to the expiration of Microsoft Azure account. I'm changing the authentication from Azure to Google Firebase and update the backend correspondingly.
+
+- **(Problem solved)** The mongodb database is down because the db was hosted by another teammate. I will rehost the dabase to my MongoDB account from my site later today
 
 **1.07.2023 By *WenyiSun***
 
