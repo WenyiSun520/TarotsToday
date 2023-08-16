@@ -36,7 +36,7 @@ This project is originally from UW-INFO441 Server-side Decelopmet serving as a F
 - Add shareEntry function so users can public their post on Tarot Forum
 
 **1.07.2023 By *WenyiSun***
-- This below URL link is expired due to logging out of UW orgnization in Microsoft Azure, please use Localhost while testing this web application after npm start command on terminal
+- This link in "URL to our site" is expired due to logging out of UW orgnization in Microsoft Azure, please use Localhost while testing this web application after npm start command on terminal
 - <p><a href="http://localhost:3000">https://localhost:3000</a></p>
 
 ~~<h2>URL to our site</h2>~~
